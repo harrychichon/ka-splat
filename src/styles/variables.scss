@@ -1,0 +1,12 @@
+$bgcolor: light-dark(#e8e8e8, #242424);
+$color: light-dark(#1a1a1a, #f9f9f9);
+$accent: #b42525;
+
+$main-font: 'Quicksand', serif;
+$accent-font: 'Fugaz One', serif;
+$text-size-regular: 1rem;
+
+$box-shadow: light-dark(
+	0 4px 30px rgba(0, 0, 0, 0.1),
+	0 4px 30px rgba(0, 0, 0, 0.9)
+);

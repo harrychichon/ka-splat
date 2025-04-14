@@ -1,0 +1,14 @@
+@use './variables';
+
+@mixin textRegular {
+	font-family: variables.$main-font;
+	font-size: variables.$text-size-regular;
+	color: variables.$color;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+@mixin headingStyle {
+	font-family: variables.$accent-font;
+	color: variables.$color;
+}
