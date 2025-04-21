@@ -1,12 +1,6 @@
+import { Character } from '@/types';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-
-type Character = {
-	id: number;
-	name: string;
-	age: number;
-	race: string;
-};
 
 type CharacterStore = {
 	activeCharacter: Character | null;

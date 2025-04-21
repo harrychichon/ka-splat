@@ -1,6 +1,6 @@
-export const API_KEY = `?api_key=${process.env.NEXT_PUBLIC_COMICVINE_API_KEY}`;
+export const API_KEY = process.env.NEXT_PUBLIC_COMICVINE_API_KEY;
 
-export const BASE_URL = 'https://comicvine.gamespot.com/api/';
+export const BASE_URL = 'https://comicvine-proxy.harrychichon.workers.dev';
 
 export type Endpoint = {
 	detail: string;

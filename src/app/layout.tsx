@@ -1,4 +1,3 @@
-import { NavBar } from '@/components';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -26,12 +25,6 @@ const RootLayout = ({
 	return (
 		<html lang='en'>
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
-				<NavBar
-					buttonText={['Home', 'About', 'Shop', 'Contact']}
-					searchBar={true}
-					logo={'🔥'}
-					inputPlaceholder='Search...'
-				/>
 				{children}
 			</body>
 		</html>

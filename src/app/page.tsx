@@ -1,13 +1,13 @@
 'use client';
 
-import { IssueCard } from '@/components';
+import TestComicVineFetch from '@/components/test/test';
 import styles from './page.module.css';
 
 const Home = () => {
 	return (
 		<div className={styles.page}>
 			<h1>Ka-splat!</h1>
-			<IssueCard />
+			{TestComicVineFetch()}
 			<div>Welcome</div>
 		</div>
 	);
