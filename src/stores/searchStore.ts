@@ -2,14 +2,19 @@ import { Issue } from '@/types';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-type IssueStore = {
+type searchStore = {
 	activeIssues: Issue[];
 	setActiveIssues: (issues: Issue[]) => void;
 };
 
-export const useIssueStore = create<IssueStore>()(
+const initialState: searchStore = {
+	activeIssues: [],
+	setActiveIssues: () => {},
+};
+
+export const useSearchStore = create<searchStore>()(
 	immer((set) => ({
-		activeIssues: [],
+		...initialState,
 		setActiveIssues: (issues) => set({ activeIssues: issues }),
 	}))
 );

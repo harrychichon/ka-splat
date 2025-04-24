@@ -1,5 +1,0 @@
-name = "comicvine-proxy"
-type = "javascript"
-
-workers_dev = true
-compatibility_date = "2025-04-21"

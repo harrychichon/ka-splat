@@ -1,3 +1,2 @@
-export * from './useCategory';
-export * from './useEntity';
-export * from './useQuery';
+export * from './useSearchEntity';
+export * from './useSearchQuery';

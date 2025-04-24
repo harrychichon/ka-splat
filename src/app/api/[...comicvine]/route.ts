@@ -1,0 +1,77 @@
+import { NextRequest } from 'next/server';
+
+const cache = new Map<string, string>();
+
+export async function GET(
+	req: NextRequest,
+	context: { params: { comicvine: string[] } }
+) {
+	const { params } = context;
+	const apiKey = process.env.COMICVINE_API_KEY;
+	if (!apiKey) {
+		return new Response(
+			JSON.stringify({ error: 'Missing ComicVine API key' }),
+			{
+				status: 500,
+				headers: { 'Content-Type': 'application/json' },
+			}
+		);
+	}
+
+	// Validate base route — only allow requests like /api/comicvine/*
+	if (params.comicvine[0] !== 'comicvine') {
+		return new Response(JSON.stringify({ error: 'Not found' }), {
+			status: 404,
+			headers: { 'Content-Type': 'application/json' },
+		});
+	}
+
+	const path = params.comicvine.slice(1).join('/') || 'search';
+	const searchParams = req.nextUrl.searchParams.toString();
+	const cacheKey = `${path}?${searchParams}`;
+
+	// Serve from cache if possible
+	if (cache.has(cacheKey)) {
+		return new Response(cache.get(cacheKey)!, {
+			headers: {
+				'Content-Type': 'application/json',
+				'X-Cache': 'HIT',
+			},
+		});
+	}
+
+	try {
+		const apiUrl = new URL(`https://comicvine.gamespot.com/api/${path}/`);
+		apiUrl.search = searchParams;
+		apiUrl.searchParams.set('api_key', apiKey);
+		apiUrl.searchParams.set('format', 'json');
+
+		const res = await fetch(apiUrl.toString(), {
+			headers: {
+				'User-Agent': 'ka-splat-proxy',
+				Accept: 'application/json',
+			},
+		});
+
+		const body = await res.text();
+
+		cache.set(cacheKey, body);
+
+		return new Response(body, {
+			status: res.status,
+			headers: {
+				'Content-Type': 'application/json',
+				'X-Cache': 'MISS',
+			},
+		});
+	} catch (err: any) {
+		console.error('ComicVine Proxy Error:', err);
+		return new Response(
+			JSON.stringify({ error: 'Failed to fetch from ComicVine' }),
+			{
+				status: 502,
+				headers: { 'Content-Type': 'application/json' },
+			}
+		);
+	}
+}

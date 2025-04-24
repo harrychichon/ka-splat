@@ -1,4 +1,3 @@
-export * from './endpoints';
-export { default as fetchCategory } from './fetchCategory';
-export { default as fetchEntity } from './fetchEntity';
-export { default as fetchQuery } from './fetchQuery';
+export * from './api';
+export { default as searchEntity } from './searchEntity';
+export { default as searchQuery } from './searchQuery';

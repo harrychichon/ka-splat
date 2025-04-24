@@ -1,6 +1,6 @@
-export const API_KEY = process.env.NEXT_PUBLIC_COMICVINE_API_KEY;
+export const API_KEY = process.env.COMICVINE_API_KEY;
 
-export const BASE_URL = 'https://comicvine-proxy.harrychichon.workers.dev';
+export const BASE_URL = '/api/comicvine';
 
 export type Endpoint = {
 	detail: string;

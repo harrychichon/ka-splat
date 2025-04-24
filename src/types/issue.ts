@@ -1,4 +1,5 @@
 import { ImageURL } from './baseTypes';
+import { Volume } from './volume';
 
 export type Issue = {
 	aliases: null;
@@ -26,7 +27,7 @@ export type AssociatedImage = {
 	image_tags: string;
 };
 
-export type Volume = {
+export type VolumeSmall = {
 	api_detail_url: string;
 	id: number;
 	name: string;
