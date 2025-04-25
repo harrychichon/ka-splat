@@ -1,44 +1,42 @@
 'use client';
 
 import { searchQuery } from '@/api';
-import { useSearchStore } from '@/stores';
+import useSearchParamsParsed from '@/hooks/useSearchParamsParsed';
 import { Issue } from '@/types';
 import Image from 'next/image';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import styles from './SearchBar.module.scss';
 
 const SearchBar = () => {
 	const router = useRouter();
-	const searchParams = useSearchParams();
-	const query = searchParams.get('query') ?? '';
+	const { query, limit } = useSearchParamsParsed();
+
 	const [input, setInput] = useState(() => query);
-
-	const [isLoading, setIsLoading] = useState(false);
 	const [liveResults, setLiveResults] = useState<Issue[]>([]);
-
-	const setActiveIssues = useSearchStore((s) => s.setActiveIssues);
-
-	const currentInputRef = useRef('');
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
-			if (input.trim() === '' || input === currentInputRef.current) return;
+			if (!input) {
+				setLiveResults([]);
+				return;
+			}
 
-			currentInputRef.current = input;
-
-			searchQuery<Issue>(input).then((results) => {
-				const trimmed = results.slice(0, 10); // still limit to 10 for now
-				setLiveResults(trimmed);
-			});
+			searchQuery<Issue>(input, {
+				resources: ['issue'],
+				limit: limit,
+			})
+				.then(setLiveResults)
+				.catch(console.error);
 		}, 300);
-		setIsLoading(true);
-		return () => clearTimeout(timeout);
-	}, [input]);
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		return () => clearTimeout(timeout);
+	}, [input, limit]);
+
+	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		router.push(`?query=${input}`);
+		setLiveResults([]);
 	};
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +44,8 @@ const SearchBar = () => {
 	};
 
 	const handleSelect = (issue: Issue) => {
-		setActiveIssues([issue]);
+		router.push(`/issue/${issue.id}`);
+		setInput('');
 		setLiveResults([]);
 	};
 
@@ -61,10 +60,9 @@ const SearchBar = () => {
 							{issue.image?.thumb_url && (
 								<Image
 									src={issue.image.thumb_url}
-									alt={issue.name || 'Issue thumbnail'}
-									width={40}
-									height={60}
-									style={{ borderRadius: '4px', objectFit: 'cover' }}
+									alt={issue.name + ' alt'}
+									width={50}
+									height={75}
 								/>
 							)}
 							<span>{issue.volume?.name}</span>

@@ -1,8 +1,6 @@
 .page {
-	display: grid;
-	grid-template-rows: 1fr 1fr 20px;
-	align-items: center;
-	justify-items: center;
+	display: flex;
+	flex-direction: column;
 	min-height: 100svh;
 }
 
