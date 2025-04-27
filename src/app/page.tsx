@@ -1,17 +1,16 @@
 'use client';
 
-import SearchBar from '@/components/UI/SearchBar/SearchBar';
-import SearchResults from '@/components/UI/SearchResults/SearchResults';
-import styles from './page.module.css';
+import { SearchBar, SearchResults } from '@/components';
+import styles from './page.module.scss';
 
-const Home = () => {
+const HomePage = () => {
 	return (
-		<div className={styles.page}>
+		<main className={styles.page}>
 			<h1>Ka-splat!</h1>
 			<SearchBar />
 			<SearchResults />
-		</div>
+		</main>
 	);
 };
 
-export default Home;
+export default HomePage;

@@ -2,10 +2,9 @@ import { NextRequest } from 'next/server';
 
 const cache = new Map<string, string>();
 
-export async function GET(
-	req: NextRequest,
-	context: { params: { comicvine: string[] } }
-) {
+type RouteContext = { params: { comicvine: string[] } };
+
+export async function GET(req: NextRequest, context: RouteContext) {
 	const { params } = context;
 	const apiKey = process.env.COMICVINE_API_KEY;
 	if (!apiKey) {
