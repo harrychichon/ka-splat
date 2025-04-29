@@ -1,4 +1,4 @@
-import { BASE_URL } from '@/constants';
+import { BASE_URL, ERROR_MESSAGES } from '@/constants';
 import { extractResourcePath } from './extractResourcePath';
 
 type SearchEntityArgs =
@@ -16,12 +16,12 @@ const searchEntity = async <T>(args: SearchEntityArgs): Promise<T | null> => {
 
 		const res = await fetch(url);
 		if (!res.ok) {
-			throw new Error(`Failed to fetch entity at ${url}`);
+			throw new Error(ERROR_MESSAGES.debug.entityFetchFailed(url));
 		}
 		const json = await res.json();
 		return json.results as T;
 	} catch (error) {
-		console.error('searchEntity error:', error);
+		console.error(ERROR_MESSAGES.debug.searchEntityError, error);
 		return null;
 	}
 };

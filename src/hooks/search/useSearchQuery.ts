@@ -33,7 +33,7 @@ const useSearchQuery = <T>(query: string, limit: number, offset: number) => {
 			offset: offset,
 		})
 			.then((results) => {
-				cache.set(query, results);
+				cache.set(cacheKey, results);
 				setData(results);
 			})
 			.catch(setError)

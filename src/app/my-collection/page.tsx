@@ -4,7 +4,8 @@ import { useCollectionStore } from '@/stores';
 import styles from './page.module.scss';
 
 const MyCollectionPage = () => {
-	const { favouriteIssues, ownedIssues } = useCollectionStore();
+	const ownedIssues = useCollectionStore((s) => s.ownedIssues);
+	const favouriteIssues = useCollectionStore((s) => s.favouriteIssues);
 
 	return (
 		<div className={styles.page}>

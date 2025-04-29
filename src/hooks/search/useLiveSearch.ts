@@ -4,6 +4,8 @@ import { searchQuery } from '@/services';
 import { Issue } from '@/types';
 import { useEffect, useState } from 'react';
 
+const DEBOUNCE_DELAY = 300;
+
 const useLiveSearch = (initialQuery: string, limit: number) => {
 	const [input, setInput] = useState(initialQuery);
 	const [results, setResults] = useState<Issue[]>([]);
@@ -19,8 +21,8 @@ const useLiveSearch = (initialQuery: string, limit: number) => {
 				limit,
 			})
 				.then(setResults)
-				.catch(console.error);
-		}, 300);
+				.catch((err) => console.error('Live search failed:', err));
+		}, DEBOUNCE_DELAY);
 
 		return () => clearTimeout(timeout);
 	}, [input, limit]);

@@ -18,7 +18,7 @@ const createCacheKey = (args: SearchEntityArgs) => {
 const useSearchEntity = <T>(args: SearchEntityArgs) => {
 	const [data, setData] = useState<T | null>(null);
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState<Error | null>(null);
+	const [error] = useState<Error | null>(null);
 
 	useEffect(() => {
 		const key = createCacheKey(args);
@@ -36,7 +36,7 @@ const useSearchEntity = <T>(args: SearchEntityArgs) => {
 				cache.set(key, fetchedData);
 				setData(fetchedData);
 			})
-			.catch(setError)
+			.catch((err) => console.error('Search entity failed:', err))
 			.finally(() => setLoading(false));
 	}, [JSON.stringify(args)]); // stable enough since it's a simple object
 

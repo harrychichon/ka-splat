@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { immer } from 'zustand/middleware/immer';
 
 type UIStore = {
 	loading: boolean;
@@ -11,14 +10,12 @@ type UIStore = {
 	reset: () => void;
 };
 
-export const useUIStore = create<UIStore>()(
-	immer((set) => ({
-		loading: false,
-		error: null,
+export const useUIStore = create<UIStore>((set) => ({
+	loading: false,
+	setLoading: (loading) => set({ loading }),
 
-		setLoading: (loading) => set({ loading }),
-		setError: (error) => set({ error }),
+	error: null,
+	setError: (error) => set({ error }),
 
-		reset: () => set({ loading: false, error: null }),
-	}))
-);
+	reset: () => set({ loading: false, error: null }),
+}));

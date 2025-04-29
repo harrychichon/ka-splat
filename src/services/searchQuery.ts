@@ -1,16 +1,13 @@
-import { API_KEY, SEARCH_ENDPOINT } from '@/constants';
+import { ERROR_MESSAGES, SEARCH_ENDPOINT } from '@/constants';
 
 const searchQuery = async <T>(
 	query: string,
 	options?: { resources?: string[]; limit?: number; offset?: number }
 ): Promise<T[]> => {
 	try {
-		const apiKey = API_KEY;
-		if (!apiKey) throw new Error('Missing API key');
 		const searchParams = new URLSearchParams({
 			query,
 			format: 'json',
-			api_key: apiKey,
 		});
 		if (options?.resources) {
 			searchParams.append('resources', options.resources.join(','));
@@ -24,12 +21,12 @@ const searchQuery = async <T>(
 
 		const res = await fetch(`${SEARCH_ENDPOINT}${searchParams}`);
 		if (!res.ok) {
-			throw new Error('Failed to fetch search results');
+			throw new Error(ERROR_MESSAGES.debug.searchFetchFailed);
 		}
 		const json = await res.json();
 		return json.results ?? [];
 	} catch (error) {
-		console.error('searchQuery error:', error);
+		console.error(ERROR_MESSAGES.debug.searchQueryFailed, error);
 		return [];
 	}
 };

@@ -1,7 +1,8 @@
 'use client';
 
 import { IconButton } from '@/components';
-import { useCardFlip, useIssueCollectionStatus } from '@/hooks';
+import { useCardFlip } from '@/hooks';
+import { useCollectionStore } from '@/stores';
 import { Issue } from '@/types';
 import { getIssueDisplayValues } from '@/utils';
 import Link from 'next/link';
@@ -12,8 +13,10 @@ type IssueCardProps = {
 };
 
 const IssueCard = ({ issue }: Readonly<IssueCardProps>) => {
-	const { isOwned, isFavourite, toggleOwned, toggleFavourite } =
-		useIssueCollectionStatus(issue.id, issue);
+	const isOwned = useCollectionStore((s) => s.isOwned(issue.id));
+	const isFavourite = useCollectionStore((s) => s.isFavourite(issue.id));
+	const toggleOwned = useCollectionStore((s) => s.toggleOwnedIssue);
+	const toggleFavourite = useCollectionStore((s) => s.toggleFavouriteIssue);
 
 	const { flipped, toggleFlip } = useCardFlip();
 
@@ -36,14 +39,14 @@ const IssueCard = ({ issue }: Readonly<IssueCardProps>) => {
 						<IconButton
 							type='Own'
 							active={isOwned}
-							onClick={toggleOwned}
+							onClick={() => toggleOwned(issue)}
 							width={48}
 							height={48}
 						/>
 						<IconButton
 							type='Fave'
 							active={isFavourite}
-							onClick={toggleFavourite}
+							onClick={() => toggleFavourite(issue)}
 							width={48}
 							height={48}
 						/>

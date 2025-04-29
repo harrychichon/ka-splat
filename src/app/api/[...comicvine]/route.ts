@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from '@/constants';
 import { NextRequest } from 'next/server';
 
 const cache = new Map<string, string>();
@@ -9,7 +10,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
 	const apiKey = process.env.COMICVINE_API_KEY;
 	if (!apiKey) {
 		return new Response(
-			JSON.stringify({ error: 'Missing ComicVine API key' }),
+			JSON.stringify({ error: ERROR_MESSAGES.api.missingApiKey }),
 			{
 				status: 500,
 				headers: { 'Content-Type': 'application/json' },
@@ -19,10 +20,13 @@ export async function GET(req: NextRequest, context: RouteContext) {
 
 	// Validate base route — only allow requests like /api/comicvine/*
 	if (params.comicvine[0] !== 'comicvine') {
-		return new Response(JSON.stringify({ error: 'Not found' }), {
-			status: 404,
-			headers: { 'Content-Type': 'application/json' },
-		});
+		return new Response(
+			JSON.stringify({ error: ERROR_MESSAGES.general.notFound }),
+			{
+				status: 404,
+				headers: { 'Content-Type': 'application/json' },
+			}
+		);
 	}
 
 	const path = params.comicvine.slice(1).join('/') || 'search';
@@ -64,9 +68,9 @@ export async function GET(req: NextRequest, context: RouteContext) {
 			},
 		});
 	} catch (err: any) {
-		console.error('ComicVine Proxy Error:', err);
+		console.error(ERROR_MESSAGES.api.proxyError, err);
 		return new Response(
-			JSON.stringify({ error: 'Failed to fetch from ComicVine' }),
+			JSON.stringify({ error: ERROR_MESSAGES.api.proxyError }),
 			{
 				status: 502,
 				headers: { 'Content-Type': 'application/json' },

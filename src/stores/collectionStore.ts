@@ -2,17 +2,18 @@ import { Issue } from '@/types';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-type collectionStore = {
+type CollectionStore = {
 	ownedIssues: Issue[];
 	toggleOwnedIssue: (issue: Issue) => void;
-	isOwned: (id: number) => boolean;
 
 	favouriteIssues: Issue[];
 	toggleFavouriteIssue: (issue: Issue) => void;
+
+	isOwned: (id: number) => boolean;
 	isFavourite: (id: number) => boolean;
 };
 
-export const useCollectionStore = create<collectionStore>()(
+export const useCollectionStore = create<CollectionStore>()(
 	immer((set, get) => ({
 		ownedIssues: [],
 		favouriteIssues: [],

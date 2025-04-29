@@ -1,4 +1,4 @@
-export interface ImageURL {
+export type ImageURL = {
 	icon_url: string;
 	medium_url: string;
 	screen_url: string;
@@ -9,4 +9,4 @@ export interface ImageURL {
 	tiny_url: string;
 	original_url: string;
 	image_tags: string;
-}
+};
