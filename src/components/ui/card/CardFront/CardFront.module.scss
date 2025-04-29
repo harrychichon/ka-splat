@@ -1,0 +1,54 @@
+.cardFront {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: #2d3748;
+	border-radius: 0.5rem;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	transform: rotateY(0deg);
+
+	.header {
+		h2,
+		h3 {
+			font-size: 1.2rem;
+			color: #e2e8f0;
+			margin: 0;
+			text-align: center;
+		}
+	}
+
+	img {
+		height: auto;
+		width: 70%;
+		object-fit: contain;
+	}
+
+	.buttonContainer {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		padding: 10px;
+		background-color: #4a5568;
+		border-radius: 0 0 0.5rem 0.5rem;
+
+		button {
+			background: none;
+			border: none;
+			cursor: pointer;
+			padding: 0.25rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+		}
+	}
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { IconButton } from '@/components';
+import { CardBack, CardFront, IconButton } from '@/components';
 import { useCardFlip } from '@/hooks';
 import { useCollectionStore } from '@/stores';
 import { Issue } from '@/types';
@@ -28,52 +28,62 @@ const IssueCard = ({ issue }: Readonly<IssueCardProps>) => {
 			<div
 				className={styles.inner}
 				role='group'>
-				<div className={styles.front}>
-					<h2>{title}</h2>
-					<h3>{subTitle}</h3>
-					<img
-						src={imageSrc}
-						alt={imageAlt}
-					/>
-					<div className={styles.buttonContainer}>
-						<IconButton
-							type='Own'
-							active={isOwned}
-							onClick={() => toggleOwned(issue)}
-							width={48}
-							height={48}
+				<CardFront
+					header={
+						<>
+							<h2>{title}</h2>
+							<h3>{subTitle}</h3>
+						</>
+					}
+					image={
+						<img
+							src={imageSrc}
+							alt={imageAlt}
 						/>
-						<IconButton
-							type='Fave'
-							active={isFavourite}
-							onClick={() => toggleFavourite(issue)}
-							width={48}
-							height={48}
-						/>
-						<IconButton
-							type='Flip'
-							onClick={toggleFlip}
-							width={48}
-							height={48}
-						/>
-					</div>
-				</div>
-				<div className={styles.back}>
-					<div className={styles.descWrapper}>{description}</div>
-					<div className={styles.buttonContainer}>
-						<Link
-							href={`/issue/${issue.id}`}
-							className={styles.readMoreButton}>
-							READ MORE...
-						</Link>
-						<IconButton
-							type='Flip'
-							onClick={toggleFlip}
-							width={48}
-							height={48}
-						/>
-					</div>
-				</div>
+					}
+					actions={
+						<>
+							<IconButton
+								type='Own'
+								active={isOwned}
+								onClick={() => toggleOwned(issue)}
+								width={48}
+								height={48}
+							/>
+							<IconButton
+								type='Fave'
+								active={isFavourite}
+								onClick={() => toggleFavourite(issue)}
+								width={48}
+								height={48}
+							/>
+							<IconButton
+								type='Flip'
+								onClick={toggleFlip}
+								width={48}
+								height={48}
+							/>
+						</>
+					}
+				/>
+				<CardBack
+					content={description}
+					actions={
+						<>
+							<Link
+								href={`/issue/${issue.id}`}
+								className={styles.readMoreButton}>
+								READ MORE...
+							</Link>
+							<IconButton
+								type='Flip'
+								onClick={toggleFlip}
+								width={48}
+								height={48}
+							/>
+						</>
+					}
+				/>
 			</div>
 		</article>
 	);
