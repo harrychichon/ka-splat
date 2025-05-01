@@ -1,3 +1,8 @@
+export type SearchQueryResult<T> = {
+	results: T[];
+	total: number;
+};
+
 export type SearchResult =
 	| SearchResultIssue
 	| SearchResultCharacter

@@ -38,7 +38,7 @@ const useSearchQuery = <T>(query: string, limit: number, offset: number) => {
 			})
 			.catch(setError)
 			.finally(() => setLoading(false));
-	}, [limit, offset, query]);
+	}, [limit, offset, query, setError, setLoading]);
 
 	return { data };
 };
