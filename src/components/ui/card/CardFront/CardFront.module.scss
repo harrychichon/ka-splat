@@ -1,3 +1,5 @@
+@import '@/styles/mixins';
+
 .cardFront {
 	position: absolute;
 	width: 100%;
@@ -27,28 +29,14 @@
 		object-fit: contain;
 	}
 
-	.buttonContainer {
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
-		padding: 10px;
-		background-color: #4a5568;
-		border-radius: 0 0 0.5rem 0.5rem;
+	.actionsContainer {
+		@include actions-grid;
+		padding: 0.75rem 1rem;
 
-		button {
-			background: none;
-			border: none;
-			cursor: pointer;
-			padding: 0.25rem;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: contain;
-			}
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
 		}
 	}
 }

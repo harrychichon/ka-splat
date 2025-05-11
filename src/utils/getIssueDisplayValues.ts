@@ -5,6 +5,7 @@ export const getIssueDisplayValues = (issue: Issue) => {
 	const subTitle = `#${issue.issue_number} ${issue.name ?? ''}`;
 	const imageSrc = issue.image?.medium_url ?? '/fallback.jpg';
 	const imageAlt = issue.name ?? 'Issue image';
+	const review = issue.review ?? null;
 
 	const description =
 		issue.description?.replace(/<[^>]+>/g, '').trim() ??
@@ -15,6 +16,7 @@ export const getIssueDisplayValues = (issue: Issue) => {
 		subTitle,
 		imageSrc,
 		imageAlt,
+		review,
 		description,
 	};
 };

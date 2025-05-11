@@ -1,0 +1,28 @@
+.pagination {
+	display: flex;
+	justify-content: center;
+
+	ul {
+		display: flex;
+		gap: 0.5rem;
+		list-style: none;
+		padding: 0;
+	}
+
+	li a {
+		padding: 0.4rem 0.6rem;
+		border-radius: 0.25rem;
+		text-decoration: none;
+		background-color: #eee;
+	}
+
+	.active {
+		background-color: #333;
+		color: white;
+		pointer-events: none;
+	}
+
+	.ellipsis {
+		padding: 0.4rem 0.6rem;
+	}
+}

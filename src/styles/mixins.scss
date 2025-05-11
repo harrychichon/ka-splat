@@ -12,3 +12,29 @@
 	font-family: variables.$accent-font;
 	color: variables.$color;
 }
+
+@mixin actions-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas: 'left center right';
+	align-items: center;
+	gap: 0.5rem;
+
+	> .left {
+		grid-area: left;
+		justify-self: start;
+		cursor: pointer;
+	}
+
+	> .center {
+		grid-area: center;
+		justify-self: center;
+		cursor: pointer;
+	}
+
+	> .right {
+		grid-area: right;
+		justify-self: end;
+		cursor: pointer;
+	}
+}

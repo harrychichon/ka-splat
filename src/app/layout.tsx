@@ -1,4 +1,4 @@
-import { LoadingOverlay, NavBar } from '@/components/';
+import { IssueReviewModal, LoadingOverlay, NavBar } from '@/components/';
 import { geistMono, geistSans } from '@/styles/fonts';
 import type { Metadata } from 'next';
 import './globals.scss';
@@ -18,6 +18,7 @@ const RootLayout = ({
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
 				<LoadingOverlay />
 				<NavBar />
+				<IssueReviewModal />
 				{children}
 			</body>
 		</html>

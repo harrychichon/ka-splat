@@ -8,8 +8,8 @@ type CardBackProps = {
 const CardBack = ({ content, actions }: Readonly<CardBackProps>) => {
 	return (
 		<article className={styles.cardBack}>
-			{content && <div className={styles.descWrapper}>{content}</div>}
-			{actions && <div className={styles.buttonContainer}>{actions}</div>}
+			<div className={styles.contentContainer}>{content}</div>
+			<div className={styles.actionsContainer}>{actions}</div>
 		</article>
 	);
 };

@@ -1,9 +1,10 @@
 import { ERROR_MESSAGES, SEARCH_ENDPOINT } from '@/constants';
+import { SearchQueryResult } from '@/types';
 
 const searchQuery = async <T>(
 	query: string,
 	options?: { resources?: string[]; limit?: number; offset?: number }
-): Promise<T[]> => {
+): Promise<SearchQueryResult<T>> => {
 	try {
 		const searchParams = new URLSearchParams({
 			query,
@@ -19,15 +20,20 @@ const searchQuery = async <T>(
 			searchParams.append('offset', options.offset.toString());
 		}
 
-		const res = await fetch(`${SEARCH_ENDPOINT}${searchParams}`);
+		const res = await fetch(`${SEARCH_ENDPOINT}?${searchParams}`);
+		console.log('Fetched from: ', res.url);
 		if (!res.ok) {
 			throw new Error(ERROR_MESSAGES.debug.searchFetchFailed);
 		}
 		const json = await res.json();
-		return json.results ?? [];
+		console.log('Res json: ', json);
+		return {
+			results: json.results ?? [],
+			total: json.number_of_total_results ?? 0,
+		};
 	} catch (error) {
 		console.error(ERROR_MESSAGES.debug.searchQueryFailed, error);
-		return [];
+		return { results: [], total: 0 };
 	}
 };
 

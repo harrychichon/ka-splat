@@ -1,2 +1,2 @@
-export { default as searchEntity } from './searchEntity';
+export * from './extractResourcePath';
 export { default as searchQuery } from './searchQuery';

@@ -2,26 +2,30 @@
 
 import { CardBack, CardFront, IconButton } from '@/components';
 import { useCardFlip } from '@/hooks';
-import { useCollectionStore } from '@/stores';
+import { useCollectionStore, useUIStore } from '@/stores';
 import { Issue } from '@/types';
 import { getIssueDisplayValues } from '@/utils';
-import Link from 'next/link';
 import styles from './IssueCard.module.scss';
 
 type IssueCardProps = {
 	issue: Issue;
+	context: 'search' | 'collection';
 };
 
-const IssueCard = ({ issue }: Readonly<IssueCardProps>) => {
+const IssueCard = ({ issue, context }: Readonly<IssueCardProps>) => {
 	const isOwned = useCollectionStore((s) => s.isOwned(issue.id));
 	const isFavourite = useCollectionStore((s) => s.isFavourite(issue.id));
 	const toggleOwned = useCollectionStore((s) => s.toggleOwnedIssue);
 	const toggleFavourite = useCollectionStore((s) => s.toggleFavouriteIssue);
-
 	const { flipped, toggleFlip } = useCardFlip();
-
-	const { title, subTitle, imageSrc, imageAlt, description } =
+	const { title, subTitle, imageSrc, imageAlt, review } =
 		getIssueDisplayValues(issue);
+
+	const handleOpenReviewModal = () => {
+		console.log('Opening modal for:', issue.name);
+		useUIStore.getState().setActiveIssue(issue);
+		useUIStore.getState().setOpenModal(true);
+	};
 
 	return (
 		<article className={`${styles.issueCard} ${flipped ? styles.flipped : ''}`}>
@@ -45,12 +49,14 @@ const IssueCard = ({ issue }: Readonly<IssueCardProps>) => {
 						<>
 							<IconButton
 								type='Own'
+								className='left'
 								active={isOwned}
 								onClick={() => toggleOwned(issue)}
 								width={48}
 								height={48}
 							/>
 							<IconButton
+								className='center'
 								type='Fave'
 								active={isFavourite}
 								onClick={() => toggleFavourite(issue)}
@@ -58,6 +64,7 @@ const IssueCard = ({ issue }: Readonly<IssueCardProps>) => {
 								height={48}
 							/>
 							<IconButton
+								className='right'
 								type='Flip'
 								onClick={toggleFlip}
 								width={48}
@@ -67,15 +74,25 @@ const IssueCard = ({ issue }: Readonly<IssueCardProps>) => {
 					}
 				/>
 				<CardBack
-					content={description}
+					content={
+						context === 'search'
+							? issue.description
+							: issue.review
+							? `(${issue.review.rating}/5) ${issue.review.text}`
+							: 'No review yet.'
+					}
 					actions={
 						<>
-							<Link
-								href={`/issue/${issue.id}`}
-								className={styles.readMoreButton}>
-								READ MORE...
-							</Link>
+							{context === 'collection' && (
+								<button
+									type='button'
+									onClick={handleOpenReviewModal}
+									className={styles.reviewButton + ' left' + ' center'}>
+									Review
+								</button>
+							)}
 							<IconButton
+								className='right'
 								type='Flip'
 								onClick={toggleFlip}
 								width={48}

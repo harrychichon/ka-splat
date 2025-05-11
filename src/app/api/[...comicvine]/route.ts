@@ -18,17 +18,6 @@ export async function GET(req: NextRequest, context: RouteContext) {
 		);
 	}
 
-	// Validate base route — only allow requests like /api/comicvine/*
-	if (params.comicvine[0] !== 'comicvine') {
-		return new Response(
-			JSON.stringify({ error: ERROR_MESSAGES.general.notFound }),
-			{
-				status: 404,
-				headers: { 'Content-Type': 'application/json' },
-			}
-		);
-	}
-
 	const path = params.comicvine.slice(1).join('/') || 'search';
 	const searchParams = req.nextUrl.searchParams.toString();
 	const cacheKey = `${path}?${searchParams}`;
@@ -45,6 +34,8 @@ export async function GET(req: NextRequest, context: RouteContext) {
 
 	try {
 		const apiUrl = new URL(`https://comicvine.gamespot.com/api/${path}/`);
+		console.log('📡 ComicVine API URL:', apiUrl.toString());
+
 		apiUrl.search = searchParams;
 		apiUrl.searchParams.set('api_key', apiKey);
 		apiUrl.searchParams.set('format', 'json');
@@ -55,6 +46,7 @@ export async function GET(req: NextRequest, context: RouteContext) {
 				Accept: 'application/json',
 			},
 		});
+		console.log('🔍 Final ComicVine URL:', apiUrl.toString());
 
 		const body = await res.text();
 

@@ -18,7 +18,7 @@ const CardFront = ({
 			{header && <div className={styles.header}>{header}</div>}
 			{image && <div className={styles.imageWrapper}>{image}</div>}
 			{children}
-			{actions && <div className={styles.buttonContainer}>{actions}</div>}
+			{actions && <div className={styles.actionsContainer}>{actions}</div>}
 		</article>
 	);
 };

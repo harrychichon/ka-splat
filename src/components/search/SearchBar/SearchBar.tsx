@@ -15,17 +15,18 @@ type SearchBarProps = {
 const SearchBar = ({ placeholder }: SearchBarProps) => {
 	const wrapperRef = useRef<HTMLDivElement>(null);
 	const router = useRouter();
-	const { query, limit } = useSearchParamsParsed();
+	const { searchTerm, limit } = useSearchParamsParsed();
 	const { input, setInput, results, clearResults } = useLiveSearch(
-		query,
+		searchTerm,
 		limit
 	);
+
 	const loading = useUIStore((s) => s.loading);
 	const error = useUIStore((s) => s.error);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		router.push(`?query=${input}`);
+		router.push(`?searchTerm=${input}&limit=${limit}&offset=0`);
 		clearResults();
 	};
 

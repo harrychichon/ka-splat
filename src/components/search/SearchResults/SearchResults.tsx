@@ -1,24 +1,41 @@
 import { InlineSpinner, IssueGrid } from '@/components/'; // or '@/components/issues'
+import Pagination from '@/components/ui/Pagination/Pagination';
 import { useSearchParamsParsed, useSearchQuery } from '@/hooks';
 import { useUIStore } from '@/stores';
-import { Issue } from '@/types';
 import styles from './SearchResults.module.scss';
 
 const SearchResults = () => {
-	const { query, limit, offset } = useSearchParamsParsed();
-	const { data: issues } = useSearchQuery<Issue>(query, limit, offset);
-
 	const loading = useUIStore((s) => s.loading);
 	const error = useUIStore((s) => s.error);
+	const { searchTerm, limit, offset } = useSearchParamsParsed();
+	const { data: issues } = useSearchQuery(searchTerm, limit, offset);
 
 	if (loading) return <InlineSpinner />;
 	if (error) return <p>{error}</p>;
-	if (!query) return null;
+	if (!searchTerm || !issues) return null;
+	const { results, total } = issues;
+
+	const totalPages = Math.ceil(total / limit);
+	const currentPage = Math.floor(offset / limit) + 1;
+
+	const buildHref = (page: number) =>
+		`?searchTerm=${searchTerm}&limit=${limit}&offset=${(page - 1) * limit}`;
+
+	console.log(offset);
 
 	return (
 		<div className={styles.searchResults}>
-			{issues && issues.length === 0 && <p>No issues found for: {query}</p>}
-			{issues && issues.length > 0 && <IssueGrid issues={issues} />}
+			{issues && results.length === 0 && (
+				<p>No issues found for: {searchTerm}</p>
+			)}
+			{issues && issues.results.length > 0 && <IssueGrid issues={results} />}
+			{totalPages > 1 && (
+				<Pagination
+					currentPage={currentPage}
+					totalPages={totalPages}
+					buildHref={buildHref}
+				/>
+			)}
 		</div>
 	);
 };

@@ -8,6 +8,7 @@ type IconButtonProps = {
 	width: number;
 	height: number;
 	type: 'Own' | 'Fave' | 'Flip';
+	className?: string;
 };
 
 const IconButton = ({
@@ -16,6 +17,7 @@ const IconButton = ({
 	onClick,
 	width,
 	height,
+	className,
 }: Readonly<IconButtonProps>) => {
 	const config = iconMap[type];
 
@@ -30,18 +32,20 @@ const IconButton = ({
 			: config.altActive;
 
 	return (
-		<button
-			type='button'
-			className={styles.iconButton}
-			onClick={onClick}
-			title={alt}>
-			<Image
-				src={src}
-				alt={alt}
-				width={width}
-				height={height}
-			/>
-		</button>
+		<div>
+			<button
+				type='button'
+				className={`${styles.iconButton} ${className ?? ''}`}
+				onClick={onClick}
+				title={alt}>
+				<Image
+					src={src}
+					alt={alt}
+					width={width}
+					height={height}
+				/>
+			</button>
+		</div>
 	);
 };
 

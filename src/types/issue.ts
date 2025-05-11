@@ -1,4 +1,5 @@
 import { ImageURL } from './baseTypes';
+import { Review } from './review';
 
 export type Issue = {
 	aliases: string | null;
@@ -17,6 +18,7 @@ export type Issue = {
 	site_detail_url: string;
 	store_date: string | null;
 	volume: IssueVolumeSmall | null;
+	review?: Review | null;
 };
 
 export type IssueAssociatedImage = {

@@ -11,7 +11,6 @@ export const ERROR_MESSAGES = {
 	general: {
 		unknown: 'An unknown error occurred.',
 		notFound: 'The requested resource could not be found.',
-		network: 'Network error. Please check your internet connection.',
 	},
 	debug: {
 		invalidComicVineUrl: (apiDetailUrl: string) =>

@@ -20,7 +20,6 @@ const MyCollectionPage = () => {
 					<p>AVG. PAGES</p>
 					<p>AVG. RATING</p>
 					<p>TOP PUBLISHER</p>
-					<p>TOP CONCEPT</p>
 				</header>
 				<section className={styles.crateWrapper}>
 					<section>
@@ -29,6 +28,7 @@ const MyCollectionPage = () => {
 							<IssueCard
 								key={issue.id}
 								issue={issue}
+								context='collection'
 							/>
 						))}
 					</section>

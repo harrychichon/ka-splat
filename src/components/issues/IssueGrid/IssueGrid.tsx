@@ -18,6 +18,7 @@ export const IssueGrid = ({ issues, title }: Readonly<IssueGridProps>) => {
 					<IssueCard
 						key={issue.id}
 						issue={issue}
+						context={'search'}
 					/>
 				))}
 			</div>

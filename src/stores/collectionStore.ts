@@ -1,4 +1,5 @@
 import { Issue } from '@/types';
+import { Review } from '@/types/review';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
@@ -11,6 +12,8 @@ type CollectionStore = {
 
 	isOwned: (id: number) => boolean;
 	isFavourite: (id: number) => boolean;
+
+	setReviewForIssue: (id: number, review: Review) => void;
 };
 
 export const useCollectionStore = create<CollectionStore>()(
@@ -27,6 +30,7 @@ export const useCollectionStore = create<CollectionStore>()(
 					state.ownedIssues.push(issue);
 				}
 			}),
+
 		toggleFavouriteIssue: (issue) =>
 			set((state) => {
 				const index = state.favouriteIssues.findIndex((i) => i.id === issue.id);
@@ -41,9 +45,22 @@ export const useCollectionStore = create<CollectionStore>()(
 			const state = get();
 			return state.ownedIssues.some((issue) => issue.id === id);
 		},
+
 		isFavourite: (id) => {
 			const state = get();
 			return state.favouriteIssues.some((issue) => issue.id === id);
 		},
+
+		setReviewForIssue: (id, review) =>
+			set((state) => {
+				const update = (list: Issue[]) => {
+					const issue = list.find((i) => i.id === id);
+					if (issue) {
+						issue.review = review;
+					}
+				};
+				update(state.ownedIssues);
+				update(state.favouriteIssues);
+			}),
 	}))
 );

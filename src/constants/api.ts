@@ -2,7 +2,7 @@ export const API_KEY = process.env.COMICVINE_API_KEY;
 
 export const BASE_URL = '/api/comicvine';
 
-export const SEARCH_ENDPOINT = '/api/comicvine/search?';
+export const SEARCH_ENDPOINT = '/api/comicvine/search';
 
 export type Endpoint = {
 	detail: string;
