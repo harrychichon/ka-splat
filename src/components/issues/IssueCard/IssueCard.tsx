@@ -10,16 +10,16 @@ import styles from './IssueCard.module.scss';
 type IssueCardProps = {
 	issue: Issue;
 	context: 'search' | 'collection';
+	className?: string;
 };
 
-const IssueCard = ({ issue, context }: Readonly<IssueCardProps>) => {
+const IssueCard = ({ issue, context, className }: Readonly<IssueCardProps>) => {
 	const isOwned = useCollectionStore((s) => s.isOwned(issue.id));
 	const isFavourite = useCollectionStore((s) => s.isFavourite(issue.id));
 	const toggleOwned = useCollectionStore((s) => s.toggleOwnedIssue);
 	const toggleFavourite = useCollectionStore((s) => s.toggleFavouriteIssue);
 	const { flipped, toggleFlip } = useCardFlip();
-	const { title, subTitle, imageSrc, imageAlt, review } =
-		getIssueDisplayValues(issue);
+	const { title, subTitle, imageSrc, imageAlt } = getIssueDisplayValues(issue);
 
 	const handleOpenReviewModal = () => {
 		console.log('Opening modal for:', issue.name);
@@ -28,7 +28,10 @@ const IssueCard = ({ issue, context }: Readonly<IssueCardProps>) => {
 	};
 
 	return (
-		<article className={`${styles.issueCard} ${flipped ? styles.flipped : ''}`}>
+		<article
+			className={`${styles.issueCard} ${
+				flipped ? styles.flipped : ''
+			}  ${className}`}>
 			<div
 				className={styles.inner}
 				role='group'>

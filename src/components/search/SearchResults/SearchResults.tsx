@@ -1,7 +1,8 @@
-import { InlineSpinner, IssueGrid } from '@/components/'; // or '@/components/issues'
+import { InlineSpinner, IssueGridList } from '@/components/'; // or '@/components/issues'
 import Pagination from '@/components/ui/Pagination/Pagination';
 import { useSearchParamsParsed, useSearchQuery } from '@/hooks';
 import { useUIStore } from '@/stores';
+import { Issue } from '@/types';
 import styles from './SearchResults.module.scss';
 
 const SearchResults = () => {
@@ -28,7 +29,13 @@ const SearchResults = () => {
 			{issues && results.length === 0 && (
 				<p>No issues found for: {searchTerm}</p>
 			)}
-			{issues && issues.results.length > 0 && <IssueGrid issues={results} />}
+			{issues && issues.results.length > 0 && (
+				<IssueGridList
+					issues={results as Issue[]}
+					isGrid={true}
+					isSearchContext={true}
+				/>
+			)}
 			{totalPages > 1 && (
 				<Pagination
 					currentPage={currentPage}

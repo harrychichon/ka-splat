@@ -1,9 +1,10 @@
 .wrapper {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	width: 100%;
-	padding: 2rem;
+	max-width: 1200px;
 	box-sizing: border-box;
+	height: 100%;
 }
 
 .title {
@@ -16,8 +17,21 @@
 .grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	gap: 2rem;
+	gap: 4rem;
 	width: 100%;
-	max-width: 1200px;
 	place-items: center;
+	background-color: antiquewhite;
+}
+
+.list {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 2rem;
+	padding: 2rem 1rem;
+	margin: 0 auto;
+	background-color: antiquewhite;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	width: 100%;
 }

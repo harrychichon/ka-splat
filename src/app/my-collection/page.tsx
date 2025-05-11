@@ -1,5 +1,5 @@
 'use client';
-import { IssueCard } from '@/components';
+import { IssueGridList } from '@/components';
 import { useCollectionStore } from '@/stores';
 import styles from './page.module.scss';
 
@@ -22,24 +22,23 @@ const MyCollectionPage = () => {
 					<p>TOP PUBLISHER</p>
 				</header>
 				<section className={styles.crateWrapper}>
-					<section>
-						<h2>FAVE</h2>
-						{favouriteIssues.map((issue) => (
-							<IssueCard
-								key={issue.id}
-								issue={issue}
-								context='collection'
-							/>
-						))}
+					<h2>Favourites</h2>
+					<section className={styles.case}>
+						<IssueGridList
+							isGrid={false}
+							isSearchContext={false}
+							issues={favouriteIssues}
+							title='Favourites'
+						/>
 					</section>
-					<section>
-						<h2>OWN</h2>
-						{ownedIssues.map((issue) => (
-							<IssueCard
-								key={issue.id}
-								issue={issue}
-							/>
-						))}
+					<h2>Own</h2>
+					<section className={styles.case}>
+						<IssueGridList
+							isGrid={false}
+							isSearchContext={false}
+							issues={ownedIssues}
+							title='Own'
+						/>
 					</section>
 				</section>
 			</main>

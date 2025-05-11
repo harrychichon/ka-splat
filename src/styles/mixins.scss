@@ -38,3 +38,45 @@
 		cursor: pointer;
 	}
 }
+
+@mixin card {
+	@include comic-box;
+	position: absolute;
+	width: variables.$card-width;
+	height: variables.$card-height;
+	backface-visibility: hidden;
+}
+
+@mixin comic-box {
+	background-color: variables.$color-panel;
+	border: variables.$border-width solid variables.$color-outline;
+	border-radius: variables.$border-radius;
+	box-shadow: 0 6px 0 variables.$color-shadow;
+	color: variables.$color-outline;
+	padding: variables.$padding;
+}
+
+@mixin comic-text {
+	font-family: variables.$font-heading;
+	color: variables.$color-primary;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	text-shadow: 1px 1px 0 variables.$color-shadow;
+}
+
+@mixin sfx-text {
+	font-family: variables.$font-sfx;
+	color: variables.$color-accent;
+	font-weight: bold;
+	font-size: 1.5rem;
+	text-shadow: 2px 2px 0 variables.$color-shadow;
+	transform: rotate(-2deg);
+}
+
+@mixin comic-frame {
+	border: 3px solid variables.$color-outline;
+	box-shadow: 4px 4px 0 variables.$color-shadow,
+		-2px -2px 0 variables.$color-highlight;
+	padding: variables.$padding;
+	background-color: variables.$color-background;
+}

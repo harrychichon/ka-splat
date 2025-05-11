@@ -1,3 +1,4 @@
+// LEGACY
 $bgcolor: light-dark(#e8e8e8, #242424);
 $color: light-dark(#1a1a1a, #f9f9f9);
 $accent: #b42525;
@@ -10,3 +11,28 @@ $box-shadow: light-dark(
 	0 4px 30px rgba(0, 0, 0, 0.1),
 	0 4px 30px rgba(0, 0, 0, 0.9)
 );
+
+// COLOURS
+$color-background: #121212;
+$color-panel: #1f1f1f;
+$color-primary: #ffde03;
+$color-accent: #ff0055;
+$color-highlight: #00eaff;
+$color-outline: #ffffff;
+$color-muted: #777;
+$color-shadow: #050505;
+
+// FONTS
+$font-heading: 'Bangers', sans-serif;
+$font-body: 'Roboto', sans-serif;
+$font-sfx: 'Comic Neue', cursive;
+
+// SIZES
+$card-width: 250px;
+$card-height: 400px;
+
+$border-radius: 1rem;
+$border-width: 3px;
+
+$padding: 1rem;
+$gap: 1.5rem;

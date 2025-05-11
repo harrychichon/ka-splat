@@ -1,3 +1,9 @@
+.navList {
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+}
+
 .buttonLink {
 	padding: 0.5rem 1rem;
 	background-color: #222;
@@ -6,8 +12,8 @@
 	border-radius: 4px;
 	text-decoration: none;
 	display: inline-block;
+	margin: 0.5rem;
 	transition: background-color 0.3s, color 0.3s;
-	list-style-type: none;
 
 	&:hover,
 	&:focus-visible {
