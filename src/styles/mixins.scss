@@ -41,10 +41,15 @@
 
 @mixin card {
 	@include comic-box;
+	@include comic-text;
 	position: absolute;
-	width: variables.$card-width;
-	height: variables.$card-height;
+	width: 100%;
+	height: 100%;
 	backface-visibility: hidden;
+	h1,
+	h2 {
+		@include sfx-text;
+	}
 }
 
 @mixin comic-box {

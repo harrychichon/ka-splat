@@ -1,3 +1,5 @@
+@use '@/styles/variables';
+
 :root {
 	--background: #ffffff;
 	--foreground: #171717;
@@ -15,8 +17,9 @@ body {
 body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: rgb(253, 253, 253);
-	color: #171717;
+	background-color: variables.$color-background;
+	color: variables.$color-outline;
+	font-family: variables.$font-body;
 }
 
 @media (prefers-color-scheme: dark) {

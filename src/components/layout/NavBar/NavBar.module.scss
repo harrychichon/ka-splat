@@ -1,3 +1,5 @@
+@import '@/styles/index';
+
 .navList {
 	display: flex;
 	flex-direction: row;
@@ -5,6 +7,9 @@
 }
 
 .buttonLink {
+	@include comic-frame;
+	@include sfx-text;
+
 	padding: 0.5rem 1rem;
 	background-color: #222;
 	color: white;

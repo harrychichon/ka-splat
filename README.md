@@ -1,5 +1,1 @@
-I'm using a deployed Cloudflare Worker
-
-The proxy is located at comicvine-proxy/
-
-You need to run anything inside it to test the app
+I'm using Next.js API route as a proxy - located at src\app\api\[...comicvine]\route.ts

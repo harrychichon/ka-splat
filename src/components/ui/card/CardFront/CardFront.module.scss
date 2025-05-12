@@ -1,10 +1,7 @@
 @import '@/styles/mixins';
 
 .cardFront {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	backface-visibility: hidden;
+	@include card;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
