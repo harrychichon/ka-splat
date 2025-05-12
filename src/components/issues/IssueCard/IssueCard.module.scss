@@ -1,9 +1,8 @@
-@use '../../../styles' as style;
-
 .issueCard {
-	@include style.comic-box;
-	flex: 0 0 auto;
 	perspective: 1000px;
+	color: #cbd5e0;
+	width: 250px;
+	height: 400px;
 
 	.inner {
 		position: relative;
