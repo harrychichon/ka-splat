@@ -22,8 +22,6 @@ const SearchResults = () => {
 	const buildHref = (page: number) =>
 		`?searchTerm=${searchTerm}&limit=${limit}&offset=${(page - 1) * limit}`;
 
-	console.log(offset);
-
 	return (
 		<div className={styles.searchResults}>
 			{issues && results.length === 0 && (

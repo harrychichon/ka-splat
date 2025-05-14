@@ -17,16 +17,14 @@ export const IssueGridList = ({
 	if (issues.length === 0) return <p>No issues to display.</p>;
 
 	return (
-		<section className={styles.wrapper}>
-			<div className={isGrid ? styles.grid : styles.list}>
-				{issues.map((issue) => (
-					<IssueCard
-						key={issue.id}
-						issue={issue}
-						context={isSearchContext ? 'search' : 'collection'}
-					/>
-				))}
-			</div>
+		<section className={isGrid ? styles.grid : styles.list}>
+			{issues.map((issue) => (
+				<IssueCard
+					key={issue.id}
+					issue={issue}
+					context={isSearchContext ? 'search' : 'collection'}
+				/>
+			))}
 		</section>
 	);
 };

@@ -1,29 +1,25 @@
-@use '@/styles/variables';
-
-:root {
-	--background: #ffffff;
-	--foreground: #171717;
-}
+@use '@/styles' as *;
 
 html,
 body {
 	max-width: 100vw;
 	overflow-x: hidden;
-	min-height: 100vh;
+	min-height: 100svh;
 	display: flex;
 	flex-direction: column;
+	background: $gradient-surface-glow;
+	color: $color-text;
+	font-family: $font-body;
+	scroll-behavior: smooth;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
 }
 
 body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: variables.$color-background;
-	color: variables.$color-outline;
-	font-family: variables.$font-body;
-}
-
-@media (prefers-color-scheme: dark) {
-	html {
-		color-scheme: dark;
-	}
+	line-height: 1.6;
+	letter-spacing: 0.02em;
+	@include frosted-panel;
 }

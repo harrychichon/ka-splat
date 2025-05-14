@@ -1,4 +1,4 @@
-@import '@/styles/mixins';
+@use 'styles' as *;
 
 .cardBack {
 	@include card;
@@ -7,23 +7,30 @@
 		'contentContainer'
 		'actionsContainer';
 	grid-template-rows: 1fr auto;
-	background-color: #2d3748;
-	border-radius: 0.5rem;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 	transform: rotateY(180deg);
 	overflow: hidden;
 
 	.contentContainer {
 		grid-area: contentContainer;
 		display: flex;
-
 		flex-wrap: wrap;
-		color: #e2e8f0;
+		color: $color-text;
 		font-size: 0.9rem;
 		padding: 15px;
 		position: relative;
 		overflow-wrap: anywhere;
-		overflow-y: scroll;
+		overflow-y: auto;
+		scrollbar-width: none;
+
+		// Comic-style text effect
+		font-family: $font-body;
+		line-height: 1.5;
+		letter-spacing: 0.015em;
+		text-shadow: 0.5px 0.5px 0 $color-shadow;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
 	}
 
 	.actionsContainer {

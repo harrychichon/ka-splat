@@ -35,7 +35,9 @@ const IconButton = ({
 		<div>
 			<button
 				type='button'
-				className={`${styles.iconButton} ${className ?? ''}`}
+				className={`${styles.iconButton} ${styles[type.toLowerCase()]} ${
+					className ?? ''
+				}`}
 				onClick={onClick}
 				title={alt}>
 				<Image

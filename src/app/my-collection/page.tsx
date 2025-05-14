@@ -9,11 +9,6 @@ const MyCollectionPage = () => {
 
 	return (
 		<div className={styles.page}>
-			<aside className={styles.aside}>
-				<section className={styles.createCrateSection}>
-					<button type='button'>Create crate</button>
-				</section>
-			</aside>
 			<main className={styles.main}>
 				<header className={styles.header}>
 					<p>OWNED</p>

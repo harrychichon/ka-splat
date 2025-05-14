@@ -52,15 +52,15 @@ const IssueCard = ({ issue, context, className }: Readonly<IssueCardProps>) => {
 						<>
 							<IconButton
 								type='Own'
-								className='left'
+								className={'left' + 'own'}
 								active={isOwned}
 								onClick={() => toggleOwned(issue)}
 								width={48}
 								height={48}
 							/>
 							<IconButton
-								className='center'
 								type='Fave'
+								className={'center' + 'fave'}
 								active={isFavourite}
 								onClick={() => toggleFavourite(issue)}
 								width={48}

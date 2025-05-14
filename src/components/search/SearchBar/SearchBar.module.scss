@@ -1,3 +1,5 @@
+@use 'styles' as *;
+
 .searchWrapper {
 	display: flex;
 	flex-direction: column;
@@ -6,10 +8,20 @@
 }
 
 .searchBar {
-	width: 650px;
+	width: 100%;
+	max-width: 650px;
 	padding: 0.75rem 1rem;
 	font-size: 1rem;
-	border-radius: 3rem;
+	border: $border-solid;
+	background: $color-surface;
+	color: $color-text;
+	box-shadow: 0 2px 8px $color-shadow;
 	box-sizing: border-box;
-	max-width: 90%;
+	transform: skew($angle-sm-right);
+
+	&:focus {
+		outline: none;
+		border-color: $color-pop-blue;
+		box-shadow: 0 0 0 3px rgba(0, 234, 255, 0.3);
+	}
 }

@@ -1,18 +1,90 @@
-@use './variables';
+@use 'variables' as *;
 
-@mixin textRegular {
-	font-family: variables.$main-font;
-	font-size: variables.$text-size-regular;
-	color: variables.$color;
-	font-weight: 400;
-	line-height: 1.5;
+// [ Comic Card ]
+@mixin card {
+	position: relative;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	border-radius: $radius-base;
+	background-color: $color-surface;
+	box-shadow: $soft-shadow;
+	padding: $padding;
+	color: $color-text;
+	font-family: $font-body;
+	text-align: center;
+	border: $border-solid;
 }
 
-@mixin headingStyle {
-	font-family: variables.$accent-font;
-	color: variables.$color;
+// [ Comic Button ]
+@mixin comic-button($variant: 'red', $icon: false) {
+	font-weight: 600;
+	font-size: 1rem;
+	transform: skew($angle-sm-right);
+	border: $border-solid;
+	cursor: pointer;
+	transition: transform $transition-fast;
+	box-shadow: 0 4px 10px $color-shadow;
+	color: $color-text;
+	position: relative;
+	z-index: 0;
+	background: $color-surface;
+
+	@if $icon {
+		display: inline-flex;
+		aspect-ratio: 1 / 1;
+		align-items: center;
+		justify-content: center;
+		padding: 0.25rem;
+		font-size: 1.25rem;
+	} @else {
+		padding: 0.75rem 1.25rem;
+	}
+
+	@if $variant == 'accent' {
+		color: black;
+		&:hover {
+			background: $gradient-accent;
+		}
+	} @else if $variant == 'red' {
+		color: black;
+		&:hover {
+			background: $gradient-pop-red;
+		}
+	} @else if $variant == 'yellow' {
+		color: black;
+		&:hover {
+			background: $gradient-pop-yellow;
+		}
+	} @else if $variant == 'blue' {
+		color: black;
+		&:hover {
+			background: $gradient-pop-blue;
+		}
+	} @else if $variant == 'neutral' {
+		color: black;
+		&:hover {
+			background: $gradient-surface-glow;
+		}
+	} @else {
+		background: $color-muted;
+	}
+
+	&:hover {
+		transform: scale(1.03) skew($angle-sm-right);
+		@include halftone-hover;
+	}
+
+	&:active {
+		@include halftone-hover-pulse;
+		@include comic-pop;
+	}
 }
 
+// [ Actions Grid ]
 @mixin actions-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -25,13 +97,11 @@
 		justify-self: start;
 		cursor: pointer;
 	}
-
 	> .center {
 		grid-area: center;
 		justify-self: center;
 		cursor: pointer;
 	}
-
 	> .right {
 		grid-area: right;
 		justify-self: end;
@@ -39,49 +109,136 @@
 	}
 }
 
-@mixin card {
-	@include comic-box;
-	@include comic-text;
-	position: absolute;
+// [Layout mixin for Grid/List]
+@mixin layout-wrapper(
+	$display,
+	$direction: null,
+	$overflow-x: null,
+	$overflow-y: null
+) {
+	display: $display;
 	width: 100%;
-	height: 100%;
-	backface-visibility: hidden;
-	h1,
-	h2 {
-		@include sfx-text;
+	padding: $padding;
+	gap: $spacing-xl;
+	background: $gradient-surface-glow;
+	border-radius: $radius-base;
+
+	@if $direction != null {
+		flex-direction: $direction;
+	}
+
+	@if $overflow-x != null {
+		overflow-x: $overflow-x;
+	}
+
+	@if $overflow-y != null {
+		overflow-y: $overflow-y;
 	}
 }
 
-@mixin comic-box {
-	background-color: variables.$color-panel;
-	border: variables.$border-width solid variables.$color-outline;
-	border-radius: variables.$border-radius;
-	box-shadow: 0 6px 0 variables.$color-shadow;
-	color: variables.$color-outline;
-	padding: variables.$padding;
+// [ Frosted Glass Panel ]
+@mixin frosted-panel {
+	background: rgba(255, 255, 255, 0.85);
+	backdrop-filter: blur(12px);
+	box-shadow: 0 12px 30px $color-shadow;
+	border-radius: $radius-base;
+	padding: $padding;
 }
 
-@mixin comic-text {
-	font-family: variables.$font-heading;
-	color: variables.$color-primary;
+// [ Comic-style jagged text ]
+@mixin jagged-heading {
+	font-family: $font-heading;
+	font-style: italic;
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
-	text-shadow: 1px 1px 0 variables.$color-shadow;
+	color: $color-text;
 }
 
-@mixin sfx-text {
-	font-family: variables.$font-sfx;
-	color: variables.$color-accent;
-	font-weight: bold;
-	font-size: 1.5rem;
-	text-shadow: 2px 2px 0 variables.$color-shadow;
-	transform: rotate(-2deg);
+// [ Halftone Overlay (Static) ]
+@mixin halftone-static {
+	background-image: radial-gradient($color-pop-red 10%, transparent 11%);
+	background-size: 8px 8px;
+	opacity: 0.15;
+	pointer-events: none;
 }
 
-@mixin comic-frame {
-	border: 3px solid variables.$color-outline;
-	box-shadow: 4px 4px 0 variables.$color-shadow,
-		-2px -2px 0 variables.$color-highlight;
-	padding: variables.$padding;
-	background-color: variables.$color-background;
+// [ Halftone Hover Pulse ]
+@keyframes halftone-pulse {
+	0% {
+		background-size: 6px 6px;
+		opacity: 0;
+	}
+	100% {
+		background-size: 10px 10px;
+		opacity: 0.45;
+	}
+}
+
+@mixin halftone-hover-pulse {
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image: radial-gradient($color-pop-blue 10%, transparent 11%);
+		background-size: 8px 8px;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity $transition-fast;
+	}
+
+	&:hover::after {
+		opacity: 0.2;
+		animation: halftone-pulse 0.4s ease-out;
+	}
+}
+
+// [ Halftone Hover ]
+
+@mixin halftone-hover {
+	position: relative;
+	overflow: hidden;
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image: radial-gradient($color-pop-red 10%, transparent 11%);
+		background-size: 10px 10px;
+		opacity: 0;
+		pointer-events: none;
+		z-index: 0;
+		mix-blend-mode: multiply;
+		transition: opacity $transition-fast;
+	}
+
+	&:hover::after {
+		opacity: 0.45;
+	}
+}
+
+// [ Comic Pop ]
+@keyframes comic-pop {
+	0% {
+		transform: scale(1) skew(0deg);
+	}
+	50% {
+		transform: scale(1.05) skew(-1deg, 1deg);
+	}
+	100% {
+		transform: scale(1) skew(0deg);
+	}
+}
+
+@mixin comic-pop {
+	animation: none;
+
+	&:hover {
+		animation: comic-pop 150ms ease-in-out;
+	}
+
+	&:active {
+		animation: comic-pop 150ms ease-in-out;
+	}
 }

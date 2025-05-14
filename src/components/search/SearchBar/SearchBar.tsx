@@ -16,7 +16,7 @@ const SearchBar = ({ placeholder }: SearchBarProps) => {
 	const wrapperRef = useRef<HTMLDivElement>(null);
 	const router = useRouter();
 	const { searchTerm, limit } = useSearchParamsParsed();
-	const { input, setInput, results, clearResults } = useLiveSearch(
+	const { input, setInput, results, clearResults, clearInput } = useLiveSearch(
 		searchTerm,
 		limit
 	);
@@ -26,8 +26,9 @@ const SearchBar = ({ placeholder }: SearchBarProps) => {
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		router.push(`?searchTerm=${input}&limit=${limit}&offset=0`);
+		router.push(`/?searchTerm=${input}&limit=${limit}&offset=0`);
 		clearResults();
+		clearInput();
 	};
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,6 +39,7 @@ const SearchBar = ({ placeholder }: SearchBarProps) => {
 		router.push(`/issue/${issue.id}`);
 		setInput('');
 		clearResults();
+		clearInput();
 	};
 
 	useOutsideClick(wrapperRef, clearResults);

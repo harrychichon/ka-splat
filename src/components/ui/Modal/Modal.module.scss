@@ -1,3 +1,5 @@
+@use 'styles' as *;
+
 .backdrop {
 	position: fixed;
 	inset: 0;
@@ -9,22 +11,27 @@
 }
 
 .modal {
-	background: white;
-	padding: 2rem;
-	border-radius: 0.5rem;
+	background: $color-surface;
+	border-radius: $radius-xl;
+	padding: $padding;
 	position: relative;
 	min-width: 450px;
 	max-width: 90vw;
 	max-height: 90vh;
 	overflow-y: auto;
+	box-shadow: 0 12px 30px $color-shadow;
+	animation: modal-pop 0.25s ease-out;
+
+	@include frosted-panel;
 }
 
-.closeBtn {
-	position: absolute;
-	top: 0.5rem;
-	right: 1rem;
-	font-size: 1.5rem;
-	background: none;
-	border: none;
-	cursor: pointer;
+@keyframes modal-pop {
+	0% {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
 }

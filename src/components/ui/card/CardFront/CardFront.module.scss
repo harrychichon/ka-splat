@@ -1,28 +1,30 @@
-@import '@/styles/mixins';
+@use 'styles' as *;
 
 .cardFront {
 	@include card;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: #2d3748;
-	border-radius: 0.5rem;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 	transform: rotateY(0deg);
 
 	.header {
-		h2,
-		h3 {
+		h2 {
 			font-size: 1.2rem;
-			color: #e2e8f0;
+			color: $color-text;
 			margin: 0;
 			text-align: center;
+			@include jagged-heading;
+		}
+
+		h3 {
+			font-size: 0.8rem;
+			font-family: $font-body;
 		}
 	}
 
 	img {
-		height: auto;
 		width: 70%;
+		height: auto;
 		object-fit: contain;
 	}
 

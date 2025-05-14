@@ -1,28 +1,50 @@
-@import '@/styles/index';
+@use 'styles' as *;
+
+.navBar {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	justify-content: center;
+	background: $color-bg;
+}
 
 .navList {
 	display: flex;
 	flex-direction: row;
 	list-style: none;
+	gap: $gap;
+	justify-content: center;
+	align-items: flex-start;
+	margin: 0;
 }
 
-.buttonLink {
-	@include comic-frame;
-	@include sfx-text;
-
-	padding: 0.5rem 1rem;
-	background-color: #222;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	text-decoration: none;
+.navItem {
+	@include comic-button('red');
+	height: auto;
+	background: $color-surface;
+	border: $border-solid;
 	display: inline-block;
-	margin: 0.5rem;
-	transition: background-color 0.3s, color 0.3s;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	box-shadow: $soft-shadow;
+	transform: skew(-5deg);
+
+	.buttonLink {
+		text-decoration: none;
+		color: #000;
+	}
 
 	&:hover,
 	&:focus-visible {
-		background-color: #333;
-		color: #ddd;
+		background: $gradient-pop-yellow;
+		color: #000;
 	}
 }
+
+//     Add .active styling if you're tracking the current page
+
+//     Add comic-style icon next to text if you're using a theme like "Collection", "Search", etc.
+
+//     Animate with a pulse or flip if you'd like the nav to feel more "comic UI"
+
+// Want help wrapping this into a sticky bottom nav for mobile too?

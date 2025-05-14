@@ -1,16 +1,20 @@
-@use '@/styles/variables';
+@use 'styles' as *;
 
 .page {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	min-height: 100svh;
-	align-content: center;
+	padding: $padding;
+	text-align: center;
+	gap: $gap;
 
 	h1 {
-		align-self: center;
+		@include jagged-heading;
+		margin-bottom: 1rem;
 	}
-}
+} //TODO lägg till "latest releases"
 
 @media (max-width: 600px) {
 	.page {

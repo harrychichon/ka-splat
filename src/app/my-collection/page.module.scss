@@ -1,14 +1,16 @@
+@use 'styles' as *;
+
 .page {
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
-	gap: 2rem;
+	min-height: 100svh;
+	gap: $gap;
+	padding: $padding;
+	align-items: center;
+	background: $color-bg;
+	color: $color-text;
 }
 
-// .case {
-// 	margin: 4rem;
-// 	min-width: fit-content;
-// 	max-width: 1200px;
-// 	height: 100%;
-// 	overflow-x: scroll;
-// }
+// Add @include halftone-hover; or @include frosted-panel; to sections inside if it’s not too much visually
+
+// If you list issues/cards here, this could use a .title with @include jagged-heading;

@@ -3,7 +3,7 @@ import { Review } from '@/types/review';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-type CollectionStore = {
+export type CollectionStore = {
 	ownedIssues: Issue[];
 	toggleOwnedIssue: (issue: Issue) => void;
 

@@ -22,7 +22,13 @@ const useLiveSearch = (initial: string, limit: number) => {
 		return () => clearTimeout(timeout);
 	}, [input, limit]);
 
-	return { input, setInput, results, clearResults: () => setResults([]) };
+	return {
+		input,
+		setInput,
+		results,
+		clearResults: () => setResults([]),
+		clearInput: () => setInput(''),
+	};
 };
 
 export default useLiveSearch;

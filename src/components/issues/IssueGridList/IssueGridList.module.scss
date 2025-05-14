@@ -1,37 +1,56 @@
-.wrapper {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	max-width: 1200px;
-	box-sizing: border-box;
-	height: 100%;
-}
+@use 'styles' as *;
+
+// .wrapper {
+// 	display: flex;
+// 	flex-direction: column;
+// 	justify-content: center;
+// 	align-items: center;
+// 	max-width: 100%;
+// 	box-sizing: border-box;
+
+// 	padding: $padding;
+// }
 
 .title {
+	@include jagged-heading;
 	font-size: 2rem;
-	margin-bottom: 1rem;
-	color: var(--color-title, #e2e8f0);
 	text-align: center;
 }
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	gap: 4rem;
+	grid-template-columns: repeat(auto-fill, minmax(290px, 290px));
+	grid-template-rows: repeat(auto-fill, minmax(490px, 490px));
+	gap: $spacing-xl;
+	justify-content: center;
+	padding: $padding;
+	background: $gradient-surface-glow;
+	border-radius: $radius-base;
+	box-shadow: 0 8px 24px $color-shadow;
 	width: 100%;
-	place-items: center;
-	background-color: antiquewhite;
+	height: 1080px;
+	justify-self: center;
 }
 
 .list {
-	display: flex;
-	flex-direction: row;
+	@include layout-wrapper(flex, row, auto, hidden);
 	align-items: center;
-	gap: 2rem;
-	padding: 2rem 1rem;
 	margin: 0 auto;
-	background-color: antiquewhite;
-	overflow-x: scroll;
-	overflow-y: hidden;
-	width: 100%;
+	scrollbar-width: thin;
+	scrollbar-color: $color-muted transparent;
+
+	&::-webkit-scrollbar {
+		height: 6px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: $color-muted;
+		border-radius: 4px;
+	}
 }
+
+// Add @include halftone-hover; to .grid or .list if you want texture on hover
+
+// Add max-height or max-rows rules if the content can overflow vertically
+
+// Consider giving .wrapper a subtle @include frosted-panel; if it's a standalone page block

@@ -1,0 +1,63 @@
+@use 'styles' as *;
+
+.dropdown {
+	list-style: none;
+	padding: 0;
+	margin: 0.5rem 0 0 0;
+	border: $border-solid;
+	box-shadow: 0 4px 12px $color-shadow;
+	max-height: fit-content;
+	width: 530px;
+	max-width: 80vw;
+	overflow-y: auto;
+	background: $color-surface;
+	position: absolute;
+	z-index: 10;
+	top: 100%;
+	box-sizing: border-box;
+	left: 0;
+
+	li {
+		@include halftone-hover;
+		position: relative;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 1rem;
+		padding: 0.75rem 1rem;
+		cursor: pointer;
+		transition: background $transition-fast;
+
+		&:hover {
+			background: $gradient-pop-yellow;
+			color: #000;
+			transform: scale(1.02) skew($angle-xs-right, $angle-xs-left);
+
+			span {
+				font-weight: bold;
+				font-size: 1.1rem;
+			}
+		}
+
+		&:active {
+			@include comic-pop;
+		}
+	}
+
+	img {
+		width: 40px;
+		height: 60px;
+		object-fit: cover;
+		border-radius: 4px;
+	}
+
+	span {
+		font-size: 0.9rem;
+		color: $color-text;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		max-width: 100%;
+	}
+}

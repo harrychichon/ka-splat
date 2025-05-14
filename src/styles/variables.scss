@@ -1,38 +1,65 @@
-// LEGACY
-$bgcolor: light-dark(#e8e8e8, #242424);
-$color: light-dark(#1a1a1a, #f9f9f9);
-$accent: #b42525;
+// [ Base palette ]
+$color-bg: #f8f8f8;
+$color-surface: #ffffff;
+$color-text: #1f1f1f;
+$color-muted: #888;
 
-$main-font: 'Quicksand', serif;
-$accent-font: 'Fugaz One', serif;
-$text-size-regular: 1rem;
+// [ Comic accents ]
+$color-pop-yellow: #ffde03;
+$color-pop-red: #ff0055;
+$color-pop-blue: #00eaff;
+$color-outline: #000;
+$color-shadow: rgba(0, 0, 0, 0.15);
 
-$box-shadow: light-dark(
-	0 4px 30px rgba(0, 0, 0, 0.1),
-	0 4px 30px rgba(0, 0, 0, 0.9)
+// [ Neon accent ]
+$color-accent: #05ff32;
+
+// [ Gradients ]
+$gradient-pop-yellow: linear-gradient(135deg, #fff600, #ffde03);
+$gradient-pop-red: linear-gradient(135deg, #ff0055, #ff3377);
+$gradient-pop-blue: linear-gradient(135deg, #00eaff, #00c6ff);
+$gradient-accent: linear-gradient(135deg, #d2ff05, #05ff32);
+$gradient-surface-glow: linear-gradient(
+	145deg,
+	rgba(255, 255, 255, 0.6),
+	rgba(245, 245, 245, 0.3)
 );
 
-// COLOURS
-$color-background: #121212;
-$color-panel: #1f1f1f;
-$color-primary: #ffde03;
-$color-accent: #ff0055;
-$color-highlight: #00eaff;
-$color-outline: #ffffff;
-$color-muted: #777;
-$color-shadow: #050505;
+// [ Angles ]
+$angle-xs-left: 2deg;
+$angle-sm-left: 5deg;
+$angle-md-left: 10deg;
+$angle-lg-left: 15deg;
+$angle-xl-left: 20deg;
+$angle-xs-right: -2deg;
+$angle-sm-right: -5deg;
+$angle-md-right: -10deg;
+$angle-lg-right: -15deg;
+$angle-xl-right: -20deg;
 
-// FONTS
+// [ Borders ]
+$border-solid: 2px solid $color-outline;
+$border-dashed: 2px dashed $color-outline;
+
+// [ Shadows ]
+$soft-shadow: 0 2px 8px $color-shadow;
+
+// [ Typography ]
+$font-body: 'Inter', sans-serif;
 $font-heading: 'Bangers', sans-serif;
-$font-body: 'Roboto', sans-serif;
 $font-sfx: 'Comic Neue', cursive;
 
-// SIZES
-$card-width: 250px;
-$card-height: 400px;
-
-$border-radius: 1rem;
-$border-width: 3px;
-
-$padding: 1rem;
+// [ Layout ]
+$radius-base: 1rem;
+$radius-xl: 2rem;
 $gap: 1.5rem;
+$padding: 1.25rem;
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+
+// [ Effects ]
+$transition-fast: 0.2s ease;
+$transition-smooth: 0.4s ease;
