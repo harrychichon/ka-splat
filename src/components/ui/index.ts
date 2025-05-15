@@ -1,7 +1,6 @@
-export { default as IconButton } from './buttons/IconButtons/IconButton';
-export { default as CardBack } from './card/CardBack/CardBack';
-export { default as CardFront } from './card/CardFront/CardFront';
-export { default as ComicBookWindow } from './ComicBookWindow/ComicBookWindow';
+export { default as CardBack } from '../issues/IssueCard/cardBack/CardBack';
+export { default as CardFront } from '../issues/IssueCard/cardFront/CardFront';
+export { default as IconButton } from './IconButton/IconButton';
 export { default as LoadingOverlay } from './LoadingOverlay/LoadingOverlay';
 export { default as Modal } from './Modal/Modal';
 export {

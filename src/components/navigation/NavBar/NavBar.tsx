@@ -1,8 +1,12 @@
 'use client';
 
-import { LiveSearchResults, SearchBar } from '@/components/search';
+import {
+	LiveSearchResults,
+	SearchBar,
+	useLiveSearch,
+	useSearchParamsParsed,
+} from '@/components/';
 import { navLinks } from '@/constants';
-import { useLiveSearch, useSearchParamsParsed } from '@/hooks';
 import { Issue } from '@/types';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

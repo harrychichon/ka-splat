@@ -1,6 +1,10 @@
-import { InlineSpinner, IssueGridList } from '@/components/'; // or '@/components/issues'
-import Pagination from '@/components/ui/Pagination/Pagination';
-import { useSearchParamsParsed, useSearchQuery } from '@/hooks';
+import {
+	InlineSpinner,
+	IssueGridList,
+	Pagination,
+	useSearchParamsParsed,
+	useSearchQuery,
+} from '@/components/'; // or '@/components/issues'
 import { useUIStore } from '@/stores';
 import { Issue } from '@/types';
 import styles from './SearchResults.module.scss';

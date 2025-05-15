@@ -1,10 +1,10 @@
 'use client';
 
+import { StatCard } from '@/components';
 import { useCollectionStore } from '@/stores';
-import { findAverage } from '@/utils';
+import { calculateAverage } from '@/utils';
 import { useEffect, useState } from 'react';
 import styles from './Dashboard.module.scss';
-import StatCard from './StatCard/StatCard';
 
 const Dashboard = () => {
 	const ownedIssues = useCollectionStore((s) => s.ownedIssues);
@@ -12,12 +12,12 @@ const Dashboard = () => {
 	const [averageRating, setAverageRating] = useState(0);
 
 	useEffect(() => {
-		const avg = findAverage(ownedIssues, (i) => i.review?.numberOfPages);
+		const avg = calculateAverage(ownedIssues, (i) => i.review?.numberOfPages);
 		setAveragePages(avg);
 	}, [ownedIssues]);
 
 	useEffect(() => {
-		const avg = findAverage(ownedIssues, (i) => i.review?.rating);
+		const avg = calculateAverage(ownedIssues, (i) => i.review?.rating);
 		setAverageRating(avg);
 	}, [ownedIssues]);
 

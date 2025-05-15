@@ -1,5 +1,4 @@
-import { Issue } from '@/types';
-import { Review } from '@/types/review';
+import { Issue, Review } from '@/types';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 

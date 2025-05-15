@@ -1,8 +1,8 @@
 'use client';
 
-import { useOutsideClick } from '@/hooks';
 import { useRef } from 'react';
 import styles from './SearchBar.module.scss';
+import useOutsideClick from './useOutsideClick';
 
 type SearchBarProps = {
 	placeholder?: string;

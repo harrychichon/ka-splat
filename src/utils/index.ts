@@ -1,3 +1,2 @@
-export * from './findAverageValue';
-export * from './getIssueDisplayValues';
+export * from './calculateAverage';
 export * from './guards';

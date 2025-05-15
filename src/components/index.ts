@@ -1,5 +1,6 @@
-export { default as Dashboard } from './Dashboard/Dashboard';
+export * from './Dashboard';
 export * from './issues';
-export { default as NavBar } from './NavBar/NavBar';
+export * from './layout';
+export * from './navigation';
 export * from './search';
 export * from './ui';

@@ -8,8 +8,8 @@ type StatCardProps = {
 const StatCard = ({ header, stat }: Readonly<StatCardProps>) => {
 	return (
 		<article className={styles.card}>
-			<h2>{header}</h2>
-			<p>{stat}</p>
+			<h2 className={styles.header}>{header}</h2>
+			<p className={styles.stat}>{stat}</p>
 		</article>
 	);
 };

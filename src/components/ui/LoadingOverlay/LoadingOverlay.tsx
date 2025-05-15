@@ -1,7 +1,7 @@
 'use client';
 
+import { Spinner } from '@/components';
 import { useUIStore } from '@/stores';
-import Spinner from '../Spinner/Spinner';
 import styles from './LoadingOverlay.module.scss';
 
 type LoadingOverlayProps = {

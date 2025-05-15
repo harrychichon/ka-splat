@@ -1,4 +1,4 @@
-import { IssueCard } from '@/components/';
+import { IssueCard } from '@/components';
 import { Issue } from '@/types';
 import styles from './IssueGridList.module.scss';
 
@@ -9,7 +9,7 @@ type IssueGridProps = {
 	title?: string;
 };
 
-export const IssueGridList = ({
+const IssueGridList = ({
 	issues,
 	isGrid,
 	isSearchContext,
@@ -32,3 +32,5 @@ export const IssueGridList = ({
 		</div>
 	);
 };
+
+export default IssueGridList;

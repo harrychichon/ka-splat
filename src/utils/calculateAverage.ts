@@ -1,4 +1,4 @@
-export const findAverage = <T>(
+export const calculateAverage = <T>(
 	arr: T[],
 	getValue: (item: T) => number | null | undefined
 ) => {
