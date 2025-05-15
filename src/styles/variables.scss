@@ -9,7 +9,7 @@ $color-pop-yellow: #ffde03;
 $color-pop-red: #ff0055;
 $color-pop-blue: #00eaff;
 $color-outline: #000;
-$color-shadow: rgba(0, 0, 0, 0.15);
+$color-shadow: rgba(0, 0, 0, 0.55);
 
 // [ Neon accent ]
 $color-accent: #05ff32;
@@ -38,11 +38,12 @@ $angle-lg-right: -15deg;
 $angle-xl-right: -20deg;
 
 // [ Borders ]
-$border-solid: 2px solid $color-outline;
-$border-dashed: 2px dashed $color-outline;
+$border-solid: 3px solid $color-outline;
+$border-dashed: 3px dashed $color-outline;
 
 // [ Shadows ]
-$soft-shadow: 0 2px 8px $color-shadow;
+$soft-shadow: 2px 2px 8px $color-shadow;
+$comic-shadow: 4px 4px 0 #000;
 
 // [ Typography ]
 $font-body: 'Inter', sans-serif;

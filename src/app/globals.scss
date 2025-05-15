@@ -22,4 +22,6 @@ body {
 	line-height: 1.6;
 	letter-spacing: 0.02em;
 	@include frosted-panel;
+	padding: 0;
+	border-radius: 0;
 }

@@ -1,0 +1,13 @@
+@use '@/styles' as *;
+
+.header {
+	display: flex;
+	flex-direction: column;
+	padding: $spacing-md;
+	border-bottom: $border-dashed;
+	background: $gradient-pop-blue;
+	backdrop-filter: blur(6px);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+}

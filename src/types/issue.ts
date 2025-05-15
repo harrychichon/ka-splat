@@ -15,8 +15,10 @@ export type Issue = {
 	associated_images: IssueAssociatedImage[];
 	issue_number: string;
 	name: string | null;
+	personCredits: string[];
 	site_detail_url: string;
 	store_date: string | null;
+	story_arc_credits: string | null;
 	volume: IssueVolumeSmall | null;
 	review?: Review | null;
 };

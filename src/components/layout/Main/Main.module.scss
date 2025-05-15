@@ -1,0 +1,8 @@
+@use '@/styles' as *;
+
+.main {
+	display: flex;
+	flex-direction: column;
+	gap: $spacing-lg;
+	min-height: 100%;
+}

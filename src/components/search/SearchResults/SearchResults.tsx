@@ -29,6 +29,7 @@ const SearchResults = () => {
 			)}
 			{issues && issues.results.length > 0 && (
 				<IssueGridList
+					title={`Results for ${searchTerm}`}
 					issues={results as Issue[]}
 					isGrid={true}
 					isSearchContext={true}

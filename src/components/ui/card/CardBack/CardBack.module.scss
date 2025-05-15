@@ -1,3 +1,4 @@
+@use '../mixins.scss' as *;
 @use 'styles' as *;
 
 .cardBack {
@@ -9,6 +10,7 @@
 	grid-template-rows: 1fr auto;
 	transform: rotateY(180deg);
 	overflow: hidden;
+	background-color: $color-bg;
 
 	.contentContainer {
 		grid-area: contentContainer;
@@ -22,20 +24,13 @@
 		overflow-y: auto;
 		scrollbar-width: none;
 
-		// Comic-style text effect
-		font-family: $font-body;
-		line-height: 1.5;
-		letter-spacing: 0.015em;
-		text-shadow: 0.5px 0.5px 0 $color-shadow;
-
 		&::-webkit-scrollbar {
 			display: none;
 		}
 	}
 
 	.actionsContainer {
-		grid-area: actionsContainer;
 		@include actions-grid;
-		padding: 0.75rem 1rem;
+		grid-area: actionsContainer;
 	}
 }

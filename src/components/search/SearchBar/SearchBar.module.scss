@@ -4,24 +4,29 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	position: relative;
+	height: 100%;
+
+	form {
+		height: 100%;
+		width: 100%;
+	}
 }
 
 .searchBar {
+	@include shadow-transition(focus);
 	width: 100%;
+	height: 100%;
 	max-width: 650px;
 	padding: 0.75rem 1rem;
 	font-size: 1rem;
 	border: $border-solid;
 	background: $color-surface;
 	color: $color-text;
-	box-shadow: 0 2px 8px $color-shadow;
+	box-shadow: $soft-shadow;
 	box-sizing: border-box;
 	transform: skew($angle-sm-right);
 
 	&:focus {
 		outline: none;
-		border-color: $color-pop-blue;
-		box-shadow: 0 0 0 3px rgba(0, 234, 255, 0.3);
 	}
 }

@@ -6,6 +6,9 @@ export const getIssueDisplayValues = (issue: Issue) => {
 	const imageSrc = issue.image?.medium_url ?? '/fallback.jpg';
 	const imageAlt = issue.name ?? 'Issue image';
 	const review = issue.review ?? null;
+	const coverDate = issue.cover_date ?? 'Unknown release date.';
+	const storyArc = issue.story_arc_credits ?? '';
+	const personCredits = issue.personCredits ?? 'Unknown staff.';
 
 	const description =
 		issue.description?.replace(/<[^>]+>/g, '').trim() ??
@@ -18,5 +21,8 @@ export const getIssueDisplayValues = (issue: Issue) => {
 		imageAlt,
 		review,
 		description,
+		coverDate,
+		storyArc,
+		personCredits,
 	};
 };

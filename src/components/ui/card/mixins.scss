@@ -1,0 +1,62 @@
+@use 'styles' as *;
+
+@mixin card {
+	@include shadow-transition(hover);
+	position: relative;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	border-radius: $radius-base;
+	color: $color-text;
+	font-family: $font-body;
+	text-align: center;
+	border: $border-solid;
+}
+
+@mixin issueCardHeading {
+	position: relative;
+	padding-left: 1rem;
+	padding-right: 2rem;
+	top: 20;
+	right: 5;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin: 0;
+	transform: rotate($angle-sm-right);
+	text-shadow: 0 2px 2px $color-shadow;
+}
+
+@mixin actions-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas: 'left center right';
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1rem;
+
+	> .left {
+		grid-area: left;
+		justify-self: start;
+		cursor: pointer;
+	}
+	> .center {
+		grid-area: center;
+		justify-self: center;
+		cursor: pointer;
+	}
+	> .right {
+		grid-area: right;
+		justify-self: end;
+		cursor: pointer;
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+}

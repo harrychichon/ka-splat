@@ -1,24 +1,5 @@
 @use 'variables' as *;
 
-// [ Comic Card ]
-@mixin card {
-	position: relative;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	backface-visibility: hidden;
-	border-radius: $radius-base;
-	background-color: $color-surface;
-	box-shadow: $soft-shadow;
-	padding: $padding;
-	color: $color-text;
-	font-family: $font-body;
-	text-align: center;
-	border: $border-solid;
-}
-
 // [ Comic Button ]
 @mixin comic-button($variant: 'red', $icon: false) {
 	font-weight: 600;
@@ -81,31 +62,6 @@
 	&:active {
 		@include halftone-hover-pulse;
 		@include comic-pop;
-	}
-}
-
-// [ Actions Grid ]
-@mixin actions-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-areas: 'left center right';
-	align-items: center;
-	gap: 0.5rem;
-
-	> .left {
-		grid-area: left;
-		justify-self: start;
-		cursor: pointer;
-	}
-	> .center {
-		grid-area: center;
-		justify-self: center;
-		cursor: pointer;
-	}
-	> .right {
-		grid-area: right;
-		justify-self: end;
-		cursor: pointer;
 	}
 }
 
@@ -181,7 +137,7 @@
 		content: '';
 		position: absolute;
 		inset: 0;
-		background-image: radial-gradient($color-pop-blue 10%, transparent 11%);
+		background-image: radial-gradient($color-shadow 30%, transparent 21%);
 		background-size: 8px 8px;
 		opacity: 0;
 		pointer-events: none;
@@ -204,7 +160,7 @@
 		content: '';
 		position: absolute;
 		inset: 0;
-		background-image: radial-gradient($color-pop-red 10%, transparent 11%);
+		background-image: radial-gradient($color-shadow 30%, transparent 21%);
 		background-size: 10px 10px;
 		opacity: 0;
 		pointer-events: none;
@@ -240,5 +196,21 @@
 
 	&:active {
 		animation: comic-pop 150ms ease-in-out;
+	}
+}
+
+@mixin shadow-transition($pseudo) {
+	transition: box-shadow 250ms ease-in-out;
+
+	@if $pseudo == hover {
+		&:hover {
+			outline: none;
+			box-shadow: $comic-shadow;
+		}
+	} @else if $pseudo == focus {
+		&:focus {
+			outline: none;
+			box-shadow: $comic-shadow;
+		}
 	}
 }

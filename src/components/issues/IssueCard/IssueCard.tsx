@@ -6,6 +6,7 @@ import { useCollectionStore, useUIStore } from '@/stores';
 import { Issue } from '@/types';
 import { getIssueDisplayValues } from '@/utils';
 import styles from './IssueCard.module.scss';
+import AboutIssue from './aboutIssue/AboutIssue';
 
 type IssueCardProps = {
 	issue: Issue;
@@ -19,14 +20,14 @@ const IssueCard = ({ issue, context, className }: Readonly<IssueCardProps>) => {
 	const toggleOwned = useCollectionStore((s) => s.toggleOwnedIssue);
 	const toggleFavourite = useCollectionStore((s) => s.toggleFavouriteIssue);
 	const { flipped, toggleFlip } = useCardFlip();
-	const { title, subTitle, imageSrc, imageAlt } = getIssueDisplayValues(issue);
+	const { title, subTitle, imageSrc, coverDate, storyArc, personCredits } =
+		getIssueDisplayValues(issue);
 
 	const handleOpenReviewModal = () => {
 		console.log('Opening modal for:', issue.name);
 		useUIStore.getState().setActiveIssue(issue);
 		useUIStore.getState().setOpenModal(true);
 	};
-
 	return (
 		<article
 			className={`${styles.issueCard} ${
@@ -36,17 +37,12 @@ const IssueCard = ({ issue, context, className }: Readonly<IssueCardProps>) => {
 				className={styles.inner}
 				role='group'>
 				<CardFront
+					image={imageSrc}
 					header={
 						<>
 							<h2>{title}</h2>
 							<h3>{subTitle}</h3>
 						</>
-					}
-					image={
-						<img
-							src={imageSrc}
-							alt={imageAlt}
-						/>
 					}
 					actions={
 						<>
@@ -78,11 +74,18 @@ const IssueCard = ({ issue, context, className }: Readonly<IssueCardProps>) => {
 				/>
 				<CardBack
 					content={
-						context === 'search'
-							? issue.description
-							: issue.review
-							? `(${issue.review.rating}/5) ${issue.review.text}`
-							: 'No review yet.'
+						context === 'search' ? (
+							<AboutIssue
+								coverDate={coverDate}
+								volume={title}
+								storyArc={storyArc}
+								personCredits={personCredits}
+							/>
+						) : issue.review ? (
+							`(${issue.review.rating}/5) ${issue.review.text}`
+						) : (
+							'No review yet.'
+						)
 					}
 					actions={
 						<>

@@ -1,11 +1,21 @@
 @use 'styles' as *;
 
 .navBar {
+	display: grid;
+	grid-auto-columns: 1fr, auto;
+	align-self: center;
+	width: fit-content;
+	max-width: 1200px;
+}
+
+.actionsWrapper {
+	position: relative;
 	display: flex;
 	flex-direction: row;
-	align-items: flex-end;
+	align-items: center;
 	justify-content: center;
-	background: $color-bg;
+	width: 100%;
+	max-width: 1200px;
 }
 
 .navList {
@@ -14,7 +24,7 @@
 	list-style: none;
 	gap: $gap;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: center;
 	margin: 0;
 }
 
@@ -36,7 +46,6 @@
 
 	&:hover,
 	&:focus-visible {
-		background: $gradient-pop-yellow;
 		color: #000;
 	}
 }

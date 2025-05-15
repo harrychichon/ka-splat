@@ -1,8 +1,9 @@
 import { IssueReviewModal, LoadingOverlay, NavBar } from '@/components/';
+import { Header, Main } from '@/components/layout';
+import Footer from '@/components/layout/Footer/Footer';
 import { geistMono, geistSans } from '@/styles/fonts';
 import type { Metadata } from 'next';
 import './globals.scss';
-import styles from './layout.module.scss';
 
 export const metadata: Metadata = {
 	title: 'Ka-Splat!',
@@ -16,20 +17,14 @@ const RootLayout = ({
 }>) => {
 	return (
 		<html lang='en'>
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} ${styles.layout}`}>
+			<body className={`${geistSans.variable} ${geistMono.variable}`}>
 				<LoadingOverlay />
-
-				<header className={styles.header}>
+				<Header>
 					<NavBar />
-				</header>
+				</Header>
+				<Main>{children}</Main>
 
-				<main className={styles.main}>{children}</main>
-
-				<footer className={styles.footer}>
-					&copy; {new Date().getFullYear()} Ka-Splat!
-				</footer>
-
+				<Footer>&copy; {new Date().getFullYear()} Ka-Splat!</Footer>
 				<IssueReviewModal />
 			</body>
 		</html>

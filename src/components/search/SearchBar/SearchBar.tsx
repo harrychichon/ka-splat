@@ -1,46 +1,25 @@
 'use client';
 
-import { InlineSpinner, LiveSearchResults } from '@/components';
-import { useLiveSearch, useOutsideClick, useSearchParamsParsed } from '@/hooks';
-import { useUIStore } from '@/stores';
-import { Issue } from '@/types';
-import { useRouter } from 'next/navigation';
+import { useOutsideClick } from '@/hooks';
 import { useRef } from 'react';
 import styles from './SearchBar.module.scss';
 
 type SearchBarProps = {
 	placeholder?: string;
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	value: string;
+	handleSubmit: (e: React.FormEvent) => void;
+	clearResults: () => void;
 };
 
-const SearchBar = ({ placeholder }: SearchBarProps) => {
+const SearchBar = ({
+	placeholder,
+	onChange,
+	value,
+	handleSubmit,
+	clearResults,
+}: SearchBarProps) => {
 	const wrapperRef = useRef<HTMLDivElement>(null);
-	const router = useRouter();
-	const { searchTerm, limit } = useSearchParamsParsed();
-	const { input, setInput, results, clearResults, clearInput } = useLiveSearch(
-		searchTerm,
-		limit
-	);
-
-	const loading = useUIStore((s) => s.loading);
-	const error = useUIStore((s) => s.error);
-
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		router.push(`/?searchTerm=${input}&limit=${limit}&offset=0`);
-		clearResults();
-		clearInput();
-	};
-
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setInput(e.target.value);
-	};
-
-	const handleSelect = (issue: Issue) => {
-		router.push(`/issue/${issue.id}`);
-		setInput('');
-		clearResults();
-		clearInput();
-	};
 
 	useOutsideClick(wrapperRef, clearResults);
 
@@ -49,22 +28,14 @@ const SearchBar = ({ placeholder }: SearchBarProps) => {
 			ref={wrapperRef}
 			className={styles.searchWrapper}>
 			<form onSubmit={handleSubmit}>
-				{loading && <InlineSpinner />}
-				{error && <p>{error}</p>}
 				<input
 					className={styles.searchBar}
 					type='search'
 					placeholder={placeholder}
-					value={input}
-					onChange={handleChange}
+					value={value}
+					onChange={onChange}
 				/>
 			</form>
-			{input.length > 0 && (
-				<LiveSearchResults
-					issues={results}
-					onSelect={handleSelect}
-				/>
-			)}
 		</div>
 	);
 };

@@ -1,0 +1,14 @@
+@use '@/styles' as *;
+
+.footer {
+	text-align: center;
+	padding: $spacing-md;
+	font-size: 0.875rem;
+	color: $color-muted;
+	background: rgba(0, 0, 0, 0.05);
+	border-top: $border-dashed;
+	position: absolute;
+	bottom: 0;
+	z-index: 1000;
+	width: 100%;
+}
