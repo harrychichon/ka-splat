@@ -1,15 +1,16 @@
 import styles from './StatCard.module.scss';
-
 type StatCardProps = {
-	header: string;
+	category: string;
 	stat: number;
 };
 
-const StatCard = ({ header, stat }: Readonly<StatCardProps>) => {
+const StatCard = ({ category, stat }: Readonly<StatCardProps>) => {
 	return (
 		<article className={styles.card}>
-			<h2 className={styles.header}>{header}</h2>
 			<p className={styles.stat}>{stat}</p>
+			<div className={styles.category}>
+				<p>{category}</p>
+			</div>
 		</article>
 	);
 };

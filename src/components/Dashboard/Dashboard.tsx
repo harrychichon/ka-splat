@@ -24,16 +24,16 @@ const Dashboard = () => {
 	return (
 		<section className={styles.dashboard}>
 			<StatCard
-				header='Owned'
+				category='Owned'
 				stat={ownedIssues.length}
 			/>
 			<StatCard
-				header='Avg. pages'
+				category='Avg. pages'
 				stat={averagePages}
 			/>
 
 			<StatCard
-				header='Avg. rating'
+				category='Avg. rating'
 				stat={averageRating}
 			/>
 			<p>TOP PUBLISHER</p>

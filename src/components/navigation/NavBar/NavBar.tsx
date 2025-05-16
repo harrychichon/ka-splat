@@ -7,7 +7,6 @@ import {
 	useSearchParamsParsed,
 } from '@/components/';
 import { navLinks } from '@/constants';
-import { Issue } from '@/types';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import styles from './NavBar.module.scss';
@@ -16,20 +15,14 @@ const NavBar = () => {
 	const { searchTerm, limit } = useSearchParamsParsed();
 	const { input, setInput, results, clearResults, clearInput } = useLiveSearch(
 		searchTerm,
-		limit
+		limit,
+		'issue'
 	);
 
 	const router = useRouter();
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInput(e.target.value);
-	};
-
-	const handleSelect = (issue: Issue) => {
-		router.push(`/issue/${issue.id}`);
-		setInput('');
-		clearResults();
-		clearInput();
 	};
 
 	const handleSubmit = (e: React.FormEvent) => {
@@ -42,7 +35,7 @@ const NavBar = () => {
 		<nav className={styles.navBar}>
 			<div className={styles.actionsWrapper}>
 				<SearchBar
-					placeholder='Search...'
+					placeholder='Search issue...'
 					onChange={handleChange}
 					value={input}
 					handleSubmit={handleSubmit}
@@ -61,13 +54,8 @@ const NavBar = () => {
 							</Link>
 						</li>
 					))}
-					{input.length > 0 && (
-						<LiveSearchResults
-							issues={results}
-							onSelect={handleSelect}
-						/>
-					)}
 				</ul>
+				{input.length > 0 && <LiveSearchResults items={results} />}
 			</div>
 		</nav>
 	);

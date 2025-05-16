@@ -8,8 +8,8 @@ type SearchBarProps = {
 	placeholder?: string;
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	value: string;
-	handleSubmit: (e: React.FormEvent) => void;
 	clearResults: () => void;
+	handleSubmit?: (e: React.FormEvent) => void;
 };
 
 const SearchBar = ({

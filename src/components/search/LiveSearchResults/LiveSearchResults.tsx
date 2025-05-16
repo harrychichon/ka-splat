@@ -1,37 +1,52 @@
-import { Issue } from '@/types';
+import { Character, Issue } from '@/types';
+import { isCharacter, isIssue } from '@/utils/guards'; // or wherever you placed them
 import Image from 'next/image';
 import styles from './LiveSearchResults.module.scss';
 
+export type LiveSearchItem = Issue | Character;
+
 type LiveSearchResultsProps = {
-	issues: Issue[];
-	onSelect: (issue: Issue) => void;
+	items: LiveSearchItem[];
+	onSelect?: (item: Character) => void;
 };
 
 const LiveSearchResults = ({
-	issues,
+	items,
 	onSelect,
 }: Readonly<LiveSearchResultsProps>) => {
-	if (!issues.length) return null;
+	if (!items.length) return null;
 
 	return (
 		<ul
 			className={styles.dropdown}
 			role='listbox'>
-			{issues.map((issue) => (
+			{items.map((item) => (
 				<li
-					key={issue.id}
-					onClick={() => onSelect(issue)}>
-					{issue.image?.thumb_url && (
+					key={item.id}
+					onMouseDown={() => {
+						console.log('✅ MouseDown fired for', item.name);
+						if (isCharacter(item)) onSelect?.(item);
+					}}>
+					{item.image?.thumb_url && (
 						<Image
-							src={issue.image.thumb_url}
-							alt={issue.name ?? 'Issue'}
+							src={item.image.thumb_url}
+							alt={item.name ?? 'Live result item'}
 							width={50}
 							height={75}
 						/>
 					)}
-					<span>{issue.volume?.name}</span>
-					<span>{issue.name}</span>
-					<span>#{issue.issue_number}</span>
+					{isIssue(item) ? (
+						<>
+							<span>{item.volume?.name}</span>
+							<span>{item.name}</span>
+							<span>#{item.issue_number}</span>
+						</>
+					) : (
+						<>
+							<span>{item.name}</span>
+							<span>{item.deck}</span>
+						</>
+					)}
 				</li>
 			))}
 		</ul>

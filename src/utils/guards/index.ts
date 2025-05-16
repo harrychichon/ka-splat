@@ -1,4 +1,3 @@
 export * from './createArrayGuard';
+export * from './isCharacter';
 export * from './isIssue';
-export * from './isSearchResultIssue';
-export * from './isSearchResultVolume';

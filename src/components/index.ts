@@ -1,3 +1,4 @@
+export * from './characters';
 export * from './Dashboard';
 export * from './issues';
 export * from './layout';

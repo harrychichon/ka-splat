@@ -1,0 +1,40 @@
+@use 'styles' as *;
+
+.card {
+	display: grid;
+	place-items: center;
+	grid-template-rows: 3fr 1fr;
+	background-color: $color-bg;
+	border: $border-solid;
+	transform: skew($angle-xs-right);
+	box-shadow: $soft-shadow;
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	overflow: hidden;
+
+	.category {
+		background: $gradient-pop-yellow;
+		transform: rotate($angle-sm-left);
+		height: 100% + 20%;
+		width: 100% + 10%;
+		position: relative;
+		bottom: -15;
+		right: 5;
+		border: $border-solid;
+
+		p {
+			@include jagged-heading;
+			font-family: $font-heading;
+			transform: rotate($angle-sm-right);
+			font-weight: 900;
+			text-align: justify center;
+		}
+	}
+
+	.stat {
+		font-family: $font-sfx;
+		font-size: 4rem;
+		margin: 0;
+	}
+}

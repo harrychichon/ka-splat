@@ -1,13 +1,15 @@
 'use client';
 import { Dashboard, IssueGridList } from '@/components';
-import { useCollectionStore } from '@/stores';
+import { useCharactersStore, useCollectionStore } from '@/stores';
+import styles from './page.module.scss';
 
 const MyCollectionPage = () => {
 	const ownedIssues = useCollectionStore((s) => s.ownedIssues);
 	const favouriteIssues = useCollectionStore((s) => s.favouriteIssues);
+	const favouriteCharacters = useCharactersStore((s) => s.favouriteCharacters);
 
 	return (
-		<>
+		<div className={styles.page}>
 			<Dashboard />
 			<IssueGridList
 				isGrid={false}
@@ -22,7 +24,16 @@ const MyCollectionPage = () => {
 				issues={ownedIssues}
 				title='Own'
 			/>
-		</>
+			<div>
+				<h2>Favourite characters</h2>
+
+				<ul>
+					{favouriteCharacters.map((c) => (
+						<li key={c.id}>{c.name}</li>
+					))}
+				</ul>
+			</div>
+		</div>
 	);
 };
 

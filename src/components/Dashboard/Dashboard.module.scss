@@ -1,0 +1,11 @@
+@use 'styles' as *;
+
+.dashboard {
+	@include frosted-panel;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: $gap;
+	margin: $spacing-lg;
+}

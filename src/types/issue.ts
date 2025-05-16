@@ -21,6 +21,7 @@ export type Issue = {
 	story_arc_credits: string | null;
 	volume: IssueVolumeSmall | null;
 	review?: Review | null;
+	resource_type: 'issue';
 };
 
 export type IssueAssociatedImage = {
