@@ -4,6 +4,7 @@
 	display: grid;
 	grid-auto-columns: 1fr, auto;
 	align-self: center;
+	padding: $spacing-md;
 }
 
 .actionsWrapper {
@@ -13,7 +14,11 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	max-width: 1200px;
+
+	@media (max-width: $small) {
+		flex-direction: column-reverse;
+		gap: $spacing-xs;
+	}
 }
 
 .navList {
@@ -47,11 +52,3 @@
 		color: #000;
 	}
 }
-
-//     Add .active styling if you're tracking the current page
-
-//     Add comic-style icon next to text if you're using a theme like "Collection", "Search", etc.
-
-//     Animate with a pulse or flip if you'd like the nav to feel more "comic UI"
-
-// Want help wrapping this into a sticky bottom nav for mobile too?

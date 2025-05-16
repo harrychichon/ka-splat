@@ -2,13 +2,14 @@
 
 .footer {
 	text-align: center;
-	padding: $spacing-md;
+	padding-top: $spacing-md;
+	padding-bottom: $spacing-md;
 	font-size: 0.875rem;
 	color: $color-muted;
 	background: rgba(0, 0, 0, 0.05);
-	border-top: $border-dashed;
-	position: absolute;
-	bottom: 0;
-	z-index: 1000;
 	width: 100%;
+	border-top: $border-dashed;
+	position: fixed;
+	bottom: 0;
+	backdrop-filter: blur(12px);
 }

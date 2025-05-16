@@ -3,7 +3,6 @@ import {
 	Header,
 	IssueReviewModal,
 	LoadingOverlay,
-	Main,
 	NavBar,
 } from '@/components/';
 import type { Metadata } from 'next';
@@ -26,8 +25,7 @@ const RootLayout = ({
 				<Header>
 					<NavBar />
 				</Header>
-				<Main>{children}</Main>
-
+				{children}
 				<Footer>&copy; {new Date().getFullYear()} Ka-Splat!</Footer>
 				<IssueReviewModal />
 			</body>

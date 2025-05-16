@@ -1,0 +1,17 @@
+@use 'styles' as *;
+.grid {
+	display: grid;
+	grid-template-columns: 5fr 1fr;
+	gap: 5rem;
+	margin-top: $spacing-xl;
+	width: 100%;
+
+	@media (max-width: $small) {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: center;
+		margin-top: 0;
+		width: 100%;
+	}
+}

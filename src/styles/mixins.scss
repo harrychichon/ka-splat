@@ -214,3 +214,16 @@
 		}
 	}
 }
+
+// [ Media query ]
+// @mixin respond-to($breakpoint) {
+// 	$width: map-get($breakpoints, $breakpoint);
+
+// 	@if $width {
+// 		@media (max-width: $width) {
+// 			@content;
+// 		}
+// 	} @else {
+// 		@warn 'Breakpoint not found in $breakpoints map.';
+// 	}
+// }

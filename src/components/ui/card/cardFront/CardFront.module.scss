@@ -1,4 +1,4 @@
-@use '../IssueCard.mixins' as *;
+@use '../../../issues/IssueCard/IssueCard.mixins' as *;
 @use 'styles' as *;
 
 .cardFront {
@@ -41,5 +41,8 @@
 
 	.actionsContainer {
 		@include actions-grid;
+	}
+	&.compact {
+		height: 120px;
 	}
 }

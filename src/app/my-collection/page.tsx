@@ -1,5 +1,6 @@
 'use client';
-import { Dashboard, IssueGridList } from '@/components';
+import { Dashboard, IssueGridList, LayoutGrid } from '@/components';
+import CharacterGridList from '@/components/characters/CharacterGridList/CharacterGridList';
 import { useCharactersStore, useCollectionStore } from '@/stores';
 import styles from './page.module.scss';
 
@@ -10,29 +11,32 @@ const MyCollectionPage = () => {
 
 	return (
 		<div className={styles.page}>
-			<Dashboard />
-			<IssueGridList
-				isGrid={false}
-				isSearchContext={false}
-				issues={favouriteIssues}
-				title='Favourites'
-			/>
+			<LayoutGrid
+				main={
+					<>
+						<Dashboard />
+						<IssueGridList
+							isGrid={false}
+							isSearchContext={false}
+							issues={favouriteIssues}
+							title='Favourites'
+						/>
 
-			<IssueGridList
-				isGrid={false}
-				isSearchContext={false}
-				issues={ownedIssues}
-				title='Own'
+						<IssueGridList
+							isGrid={false}
+							isSearchContext={false}
+							issues={ownedIssues}
+							title='Own'
+						/>
+					</>
+				}
+				aside={
+					<CharacterGridList
+						characters={favouriteCharacters}
+						isGrid={false}
+					/>
+				}
 			/>
-			<div>
-				<h2>Favourite characters</h2>
-
-				<ul>
-					{favouriteCharacters.map((c) => (
-						<li key={c.id}>{c.name}</li>
-					))}
-				</ul>
-			</div>
 		</div>
 	);
 };

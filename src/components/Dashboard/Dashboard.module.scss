@@ -3,9 +3,16 @@
 .dashboard {
 	@include frosted-panel;
 	display: flex;
-	flex-direction: row;
+	flex-flow: row wrap;
+
 	justify-content: center;
 	align-items: center;
 	gap: $gap;
-	margin: $spacing-lg;
+	width: 100%;
+}
+
+@media (max-width: $small) {
+	.dashboard {
+		flex-direction: column;
+	}
 }

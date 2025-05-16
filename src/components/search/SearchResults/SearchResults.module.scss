@@ -1,7 +1,6 @@
 @use 'styles' as *;
 
 .searchResults {
-	padding: $padding;
 	margin: 0 auto;
 	width: 100%;
 	height: fit-content;
@@ -10,9 +9,3 @@
 	flex-direction: column;
 	gap: $gap;
 }
-
-// Wrap this with a .comic-section class if you want a styled background or angled section divider
-
-// Add a .searchResults-title child with @include jagged-heading
-
-// Add an emptyState variant for when no results match

@@ -5,6 +5,7 @@ type CardFrontProps = {
 	actions?: React.ReactNode;
 	children?: React.ReactNode;
 	image?: string;
+	size?: 'default' | 'compact';
 };
 
 const CardFront = ({
@@ -12,10 +13,13 @@ const CardFront = ({
 	actions,
 	children,
 	image,
+	size,
 }: Readonly<CardFrontProps>) => {
 	return (
 		<article
-			className={styles.cardFront}
+			className={`${styles.cardFront} ${
+				size === 'compact' ? styles.compact : ''
+			}`}
 			style={image ? { backgroundImage: `url(${image})` } : undefined}>
 			{header && <div className={styles.header}>{header}</div>}
 			{children}

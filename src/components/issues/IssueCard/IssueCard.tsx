@@ -1,16 +1,11 @@
 'use client';
 
-import {
-	AboutIssue,
-	CardBack,
-	CardFront,
-	getIssueDisplayValues,
-	IconButton,
-	useCardFlip,
-} from '@/components';
+import { AboutIssue, CardFront, IconButton, useCardFlip } from '@/components';
 import { useCollectionStore, useUIStore } from '@/stores';
 import { Issue } from '@/types';
 import styles from './IssueCard.module.scss';
+import CardBack from './cardBack/CardBack';
+import { getIssueDisplayValues } from './getIssueDisplayValues';
 
 type IssueCardProps = {
 	issue: Issue;

@@ -1,8 +1,7 @@
 @use 'styles' as *;
-
 .container {
 	display: flex;
-	flex-direction: column;
+	flex-flow: column wrap;
 	justify-content: center;
 	align-items: center;
 }
@@ -18,6 +17,7 @@
 	display: grid;
 	grid-template-rows: 1fr 1fr;
 	grid-template-columns: auto auto auto auto;
+	width: 100%;
 	max-width: 1200px;
 
 	gap: $spacing-xl;
@@ -26,14 +26,32 @@
 	background: $gradient-surface-glow;
 	border-radius: $radius-base;
 	box-shadow: $soft-shadow;
-	width: fit-content;
 	height: fit-content;
 	justify-self: center;
+
+	@media (max-width: $small) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.frost {
+	@include frosted-panel;
 }
 
 .list {
-	@include layout-wrapper(flex, row, auto, hidden);
-	align-items: center;
+	// @include layout-wrapper(flex, row, auto, hidden);
+	// flex-wrap: wrap;
+	// align-items: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 1rem;
+
+	> * {
+		flex: 0 0 auto;
+	}
 	margin: 0 auto;
 	scrollbar-width: thin;
 	scrollbar-color: $color-muted transparent;
@@ -47,9 +65,3 @@
 		border-radius: 4px;
 	}
 }
-
-// Add @include halftone-hover; to .grid or .list if you want texture on hover
-
-// Add max-height or max-rows rules if the content can overflow vertically
-
-// Consider giving .wrapper a subtle @include frosted-panel; if it's a standalone page block
